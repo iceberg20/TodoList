@@ -13,7 +13,6 @@
         <url>https://github.com/iceberg20/TodoList.git</url>
         <inceptionYear>2016</inceptionYear>
         
-<<<<<<< HEAD
         <!-- SCM -->
         <scm>
             <connection>scm:git:https://github.com/iceberg20/TodoList.git</connection>
@@ -21,9 +20,7 @@
             <url>scm:git:https://github.com/iceberg20/TodoList.git</url>
             <tag>HEAD</tag>
         </scm>
-        
-=======
->>>>>>> 2b6ba1ce6f5314e6dd6b3636b928ed217e088c9c
+
         <developers>
             <developer>
                 <id>todolist</id>
