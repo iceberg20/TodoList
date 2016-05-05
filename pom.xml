@@ -10,6 +10,37 @@
 
 	<name>Todo</name>
 	<description>Gerenciado de Tarefas</description>
+        <url>https://github.com/iceberg20/TodoList.git</url>
+        <inceptionYear>2016</inceptionYear>
+        
+        <developers>
+            <developer>
+                <id>todolist</id>
+                <name>Ítalo Berg Marques Souza dos Reis</name>
+                <email>italoberg@yahoo.com.br</email>
+                <timezone>-3</timezone>
+            </developer>
+            
+            <developer>
+                <id>todolist</id>
+                <name>Maria Júlia Martins Silva</name>
+                <email>mjuh.ms@gmail.com</email>
+                <timezone>-3</timezone>
+            </developer>
+            
+            <developer>
+                <id>todolist</id>
+                <name>Luan Gonçalvez Barbosa</name>
+                <email>luanluan.goncbs@gmail.com</email>
+                <timezone>-3</timezone>
+            </developer>
+                    <developer>
+                <id>todolist</id>
+                <name>Jefferson Augusto Rodrigues De Azedo</name>
+                <email>jeffersonxplode@gmail.com</email>
+                <timezone>-3</timezone>
+            </developer>
+    </developers>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
