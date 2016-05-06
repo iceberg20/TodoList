@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dominio;
+package br.edu.ifrn.todo.dominio;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-
 
 /**
  *
@@ -20,7 +19,7 @@ import lombok.Setter;
 @Setter
 @Builder
 @EqualsAndHashCode
-public class Tarefa {
-    //Inserrir atributo da do tipo LocalTime
+public class Projeto {
+    private String nome;
     
 }
