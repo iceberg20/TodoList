@@ -25,4 +25,7 @@ public class Usuario {
     private String email;
     private String senha;
     private int nivel;
+    private int combo;
+    private int qtdTarefa;
+
 }

@@ -5,6 +5,7 @@
  */
 package br.edu.ifrn.todo.dominio;
 
+import java.util.Date;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,6 +22,10 @@ import lombok.Setter;
 @Builder
 @EqualsAndHashCode
 public class Tarefa {
-    //Inserrir atributo da do tipo LocalTime
+   private Date prazo;
+   private Date data;
+   private String nome;
+   private int prioridade;
+   private boolean concluida;   
     
 }
