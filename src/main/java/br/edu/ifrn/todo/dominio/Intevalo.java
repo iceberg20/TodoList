@@ -5,21 +5,14 @@
  */
 package br.edu.ifrn.todo.dominio;
 
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import java.time.LocalTime;
 
 /**
  *
  * @author italo
  */
-
-@Getter
-@Setter
-@Builder
-@EqualsAndHashCode
-public class Estatistica {
-    private int combo;
-    private int qatdTarefas;    
+public class Intevalo {
+    private LocalTime horaInicio;
+    private LocalTime horaFim;
+    
 }
