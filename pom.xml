@@ -61,7 +61,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
                 <assertj.version>3.4.1</assertj.version>
-                <testng.version>6.9.10</testng.version>
+                <testng.version>6.9.10</testng.version> 
                 <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
                 <lombok.version>1.16.8</lombok.version>
                 <lombok-maven-plugin.version>1.16.8.0</lombok-maven-plugin.version>        
@@ -128,6 +128,7 @@
 	  <type>jar</type>
 	 </dependency>
 	 <dependency>
+             
 	  <groupId>org.springframework</groupId>
 	  <artifactId>spring-test</artifactId>
 	  <version>4.2.5.RELEASE</version>
