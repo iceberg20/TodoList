@@ -39,7 +39,7 @@ import lombok.ToString;
 
 @Entity
 @SequenceGenerator(sequenceName = "seq_tarefa", name = "ID_SEQUENCE", allocationSize = 1)
-public class Tarefa implements Serializable {
+public class Tarefa implements Serializable, Comparable<Tarefa> {
    
    @Id
    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
@@ -66,6 +66,16 @@ public class Tarefa implements Serializable {
    }
 
     Tarefa() {
+    }
+
+    @Override
+    public int compareTo(Tarefa o) {
+        int result = nome.compareTo(o.nome);
+        if (result ==0)
+        {
+            result = prazo.compareTo(o.prazo);
+        }
+        return result;
     }
     
 }
