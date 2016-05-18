@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -27,19 +28,22 @@ import lombok.ToString;
 @Getter
 @Setter
 @AllArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = {"id"})
 @Builder
 @ToString
 
 @Entity
 @SequenceGenerator(sequenceName = "seq_intervalo", name = "ID_SEQUENCE", allocationSize = 1)
-public class Intevalo implements Serializable {
+public class Intervalo implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
     private Long id;
     
+    @NonNull
     private LocalTime horaInicio;
+    
+    @NonNull
     private LocalTime horaFim;
     
 }

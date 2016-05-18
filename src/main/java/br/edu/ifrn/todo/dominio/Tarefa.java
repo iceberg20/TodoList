@@ -12,13 +12,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -31,10 +32,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @AllArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = {"id", "date", "prioridade", "concluida"})
 //@Data => Substitui os 4 acima, mas dá erro com getData
-
-@Builder
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @ToString
 
 @Entity
@@ -45,12 +45,14 @@ public class Tarefa implements Serializable {
    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
    private Long id;
    
+   @NonNull
    @Temporal(javax.persistence.TemporalType.DATE)
    private Date prazo;
    
    @Temporal(javax.persistence.TemporalType.DATE)
    private Date date;
    
+   @NonNull
    private String nome;
    private int prioridade;
    private boolean concluida;   
@@ -62,5 +64,8 @@ public class Tarefa implements Serializable {
        this.prioridade = prioridade;
        this.concluida = concluida;
    }
+
+    Tarefa() {
+    }
     
 }

@@ -6,30 +6,29 @@
 package br.edu.ifrn.todo.dominio;
 
 import java.util.Date;
-import java.io.Serializable;
-import java.util.Set;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.Singular;
 import lombok.ToString;
 /**
  *
  * @author italo
  */
-
-public class Atividade extends Tarefa {
+@Getter
+@Setter
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@Entity
+public class Atividade extends Tarefa  {
     
-    public Atividade(Date prazo, Date data, String nome, int prioridade, boolean concluida) {
-        super(prazo, data, nome, prioridade, concluida);
+    private Intervalo intervalo;
+    
+    @Builder
+    public Atividade(Long id, Date prazo, Date data, String nome, int prioridade, boolean concluida, Intervalo intervalo) {
+        super(id, prazo, data, nome, prioridade, concluida);
+        this.intervalo = intervalo;
     }
     
 }

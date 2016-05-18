@@ -26,7 +26,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @AllArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = {"id"})
 @Builder
 @ToString
 
