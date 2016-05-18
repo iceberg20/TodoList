@@ -1,4 +1,4 @@
-package br.edu.ifrn;
+package br.edu.ifrn.todo;
 
 import br.edu.ifrn.todo.TodoApplication;
 import org.junit.Test;

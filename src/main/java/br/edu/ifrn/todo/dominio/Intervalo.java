@@ -6,6 +6,7 @@
 package br.edu.ifrn.todo.dominio;
 
 import java.io.Serializable;
+import java.time.LocalTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -31,13 +33,17 @@ import lombok.ToString;
 @ToString
 
 @Entity
-@SequenceGenerator(sequenceName = "seq_projeto", name = "ID_SEQUENCE", allocationSize = 1)
-public class Projeto implements Serializable {
+@SequenceGenerator(sequenceName = "seq_intervalo", name = "ID_SEQUENCE", allocationSize = 1)
+public class Intervalo implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
     private Long id;
     
-    private String nome;
+    @NonNull
+    private LocalTime horaInicio;
+    
+    @NonNull
+    private LocalTime horaFim;
     
 }

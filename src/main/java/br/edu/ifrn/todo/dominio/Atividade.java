@@ -6,15 +6,29 @@
 package br.edu.ifrn.todo.dominio;
 
 import java.util.Date;
-
+import javax.persistence.Entity;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 /**
  *
  * @author italo
  */
-public class Atividade extends Tarefa{
+@Getter
+@Setter
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@Entity
+public class Atividade extends Tarefa  {
     
-    public Atividade(Date prazo, Date data, String nome, int prioridade, boolean concluida) {
-        super(prazo, data, nome, prioridade, concluida);
+    private Intervalo intervalo;
+    
+    @Builder
+    public Atividade(Long id, Date prazo, Date data, String nome, int prioridade, boolean concluida, Intervalo intervalo) {
+        super(id, prazo, data, nome, prioridade, concluida);
+        this.intervalo = intervalo;
     }
     
 }
