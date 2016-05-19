@@ -6,6 +6,8 @@
 package br.edu.ifrn.todo.dominio;
 
 import java.time.LocalTime;
+import java.util.Set;
+import java.util.TreeSet;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -17,6 +19,7 @@ import org.testng.annotations.Test;
 public class IntervaloNGTest {
     
     private Intervalo int1;
+    private Intervalo int2;
     private LocalTime inicio1;
     private LocalTime inicio2;
     private LocalTime fim1;
@@ -25,10 +28,11 @@ public class IntervaloNGTest {
     @BeforeClass
     public void inicializacao(){
         inicio1 = LocalTime.of(10, 10);
-        inicio2 = LocalTime.of(10, 0);
+        inicio2 = LocalTime.of(9, 9);
         fim1 = LocalTime.of(12, 0);
-        fim2 = LocalTime.of(12, 30);
+        fim2 = LocalTime.of(11, 0);
         int1 = Intervalo.builder().horaInicio(inicio1).horaFim(fim1).build();
+        int2 = Intervalo.builder().horaInicio(inicio2).horaFim(fim2).build();
     }
     
     @Test
@@ -53,6 +57,16 @@ public class IntervaloNGTest {
     public void inicioFimDiferentes() {
         assertThat(Intervalo.builder().horaInicio(inicio2).horaFim(fim2).build())
                 .isNotEqualTo(int1);
+    }
+    
+    @Test
+    public void compareTo() {
+        Set<Intervalo> intervalos = new TreeSet<>();
+        
+        intervalos.add(int1);
+        intervalos.add(int2);
+        
+        assertThat(intervalos.iterator().next()).isEqualTo(int2);
     }
     
 }

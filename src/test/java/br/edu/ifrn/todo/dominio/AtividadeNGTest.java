@@ -8,6 +8,8 @@ package br.edu.ifrn.todo.dominio;
 import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Set;
+import java.util.TreeSet;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -19,6 +21,7 @@ import org.testng.annotations.Test;
 public class AtividadeNGTest {
     
     private Atividade atividade1; 
+    private Atividade atividade2; 
     private String nome1;
     private String nome2;
     private Date prazo1;
@@ -50,6 +53,7 @@ public class AtividadeNGTest {
         intervalo2 = Intervalo.builder().horaInicio(inicio).horaFim(fim2).build();
         
         atividade1 = Atividade.builder().nome(nome1).prazo(prazo1).intervalo(intervalo1).build();
+        atividade2 = Atividade.builder().nome(nome2).prazo(prazo1).intervalo(intervalo1).build();
         
     }
     
@@ -77,5 +81,14 @@ public class AtividadeNGTest {
         (intervalo1).build()).isNotEqualTo(atividade1);
     }
 
+    @Test
+    public void compareTo() {
+        Set<Atividade> atividades = new TreeSet<>();
+        
+        atividades.add(atividade1);
+        atividades.add(atividade2);
+        
+        assertThat(atividades.iterator().next()).isEqualTo(atividade2);
+    }
     
 }
