@@ -21,7 +21,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Entity
-public class Atividade extends Tarefa  {
+public class Atividade extends Tarefa{
     
     private Intervalo intervalo;
     

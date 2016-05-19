@@ -32,12 +32,17 @@ import lombok.ToString;
 
 @Entity
 @SequenceGenerator(sequenceName = "seq_projeto", name = "ID_SEQUENCE", allocationSize = 1)
-public class Projeto implements Serializable {
+public class Projeto implements Serializable, Comparable<Projeto> {
     
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
     private Long id;
     
     private String nome;
+
+    @Override
+    public int compareTo(Projeto o) {
+        return nome.compareTo(o.nome);
+    }
     
 }

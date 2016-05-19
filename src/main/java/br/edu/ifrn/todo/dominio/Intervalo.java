@@ -34,7 +34,7 @@ import lombok.ToString;
 
 @Entity
 @SequenceGenerator(sequenceName = "seq_intervalo", name = "ID_SEQUENCE", allocationSize = 1)
-public class Intervalo implements Serializable {
+public class Intervalo implements Serializable, Comparable<Intervalo> {
     
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
@@ -45,5 +45,15 @@ public class Intervalo implements Serializable {
     
     @NonNull
     private LocalTime horaFim;
+
+    @Override
+    public int compareTo(Intervalo o) {
+        int result = horaInicio.compareTo(o.horaInicio);
+        if (result ==0)
+        {
+            result = horaFim.compareTo(o.horaFim);
+        }
+        return result;
+    }
     
 }
