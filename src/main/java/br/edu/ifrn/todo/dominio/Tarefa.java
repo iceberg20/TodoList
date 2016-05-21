@@ -36,7 +36,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode(exclude = {"id", "dataInicial", "prioridade", "concluida"})
 //@Data => Substitui os 4 acima, mas dá erro com getData
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @ToString
 
 @Entity
@@ -64,13 +64,13 @@ public class Tarefa implements Serializable, Comparable<Tarefa> {
    private int prioridade;
    private boolean concluida;   
    
-   public Tarefa(Date prazo, Date dataInicial, Projeto projeto, String nome, int prioridade, boolean concluida){
+   public Tarefa(Long id, Date prazo, Date dataInicial, String nome, int prioridade, boolean concluida){
        this.prazo = prazo;
        this.dataInicial = dataInicial;
-       this.projeto = projeto;
        this.nome = nome;
        this.prioridade = prioridade;
        this.concluida = concluida;
+       this.id = id;
    }
 
     Tarefa() {
