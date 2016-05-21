@@ -44,6 +44,8 @@ import lombok.ToString;
 @SequenceGenerator(sequenceName = "seq_tarefa", name = "ID_SEQUENCE", allocationSize = 1)
 public class Tarefa implements Serializable, Comparable<Tarefa> {
    
+   private static final long serialVersionUID = 1L;
+    
    @Id
    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
    private Long id;

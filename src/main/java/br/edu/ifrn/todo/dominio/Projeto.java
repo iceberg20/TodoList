@@ -39,6 +39,8 @@ import javax.persistence.OneToMany;
 @SequenceGenerator(sequenceName = "seq_projeto", name = "ID_SEQUENCE", allocationSize = 1)
 public class Projeto implements Serializable, Comparable<Projeto> {
     
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
     private Long id;

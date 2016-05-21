@@ -23,7 +23,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, of = {"intervalo"})
 @Entity
 public class Atividade extends Tarefa{
     
