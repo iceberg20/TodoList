@@ -40,7 +40,7 @@ public class UsuarioTest {
         numero1 = 1;
         numero2 = 2;
         usuario1 = Usuario.builder().email(email1).nivel(numero1).nome(nome1)
-                .qtdTarefa(numero1).senha(senha1).combo(numero1).build();
+                .senha(senha1).combo(numero1).build();
         usuario2 = Usuario.builder().email(email2).build();
         
     }
@@ -57,7 +57,7 @@ public class UsuarioTest {
     
     @Test
     public void emailsIguaisRestoDiferente() {
-        assertThat(Usuario.builder().email(email1).nivel(numero2).nome(nome2).qtdTarefa(numero2)
+        assertThat(Usuario.builder().email(email1).nivel(numero2).nome(nome2)
                 .senha(senha2).combo(numero2).build()).isEqualTo(usuario1);
     }
     

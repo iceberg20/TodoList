@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 /**
@@ -27,6 +28,7 @@ import lombok.ToString;
 @Entity
 public class Atividade extends Tarefa{
     
+    @NonNull
     @OneToOne(mappedBy = "atividade")
     private Intervalo intervalo;
     
@@ -36,9 +38,10 @@ public class Atividade extends Tarefa{
 
     
     @Builder
-    public Atividade(Long id, Date prazo, Date data, Projeto projeto, String nome, int prioridade, boolean concluida, Intervalo intervalo) {
-        super(id, prazo, data, projeto, nome, prioridade, concluida);
+    public Atividade(Long id, Date prazo, Date dataInicial, Projeto projeto, String nome, int prioridade, boolean concluida, Intervalo intervalo) {
+        super(id, prazo, dataInicial, projeto, nome, prioridade, concluida);
         this.intervalo = intervalo;
     }
+    
     
 }

@@ -31,7 +31,7 @@ import javax.persistence.OneToMany;
 @Getter
 @Setter
 @AllArgsConstructor
-@EqualsAndHashCode(exclude = {"id"})
+@EqualsAndHashCode(exclude = {"id", "tarefas"})
 @Builder
 @ToString
 
@@ -46,20 +46,25 @@ public class Projeto implements Serializable, Comparable<Projeto> {
     private Long id;
     
     @ManyToOne
-    @JoinColumn(name = "usuarioId", foreignKey = @ForeignKey(name = "fk_projeto_usuario"))
+    @JoinColumn(name = "usuarioId", nullable = false, foreignKey = @ForeignKey(name = "fk_projeto_usuario"))
     private Usuario usuario;
     
 //    @OneToMany(mappedBy = "projeto")
 //    private Set<Atividade> atividade;
 
     @OneToMany(mappedBy = "projeto")
-    private Set<Tarefa> tarefa;
+    private Set<Tarefa> tarefas;
     
     private String nome;
 
     @Override
     public int compareTo(Projeto o) {
-        return nome.compareTo(o.nome);
+        int result = nome.compareTo(o.nome);
+        if (result ==0)
+        {
+            result = usuario.compareTo(o.usuario);
+        }
+        return result;
     }
     
 }

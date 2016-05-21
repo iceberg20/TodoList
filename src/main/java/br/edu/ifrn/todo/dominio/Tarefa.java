@@ -22,7 +22,6 @@ import javax.persistence.Temporal;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -35,7 +34,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @AllArgsConstructor
-@EqualsAndHashCode(exclude = {"id", "date", "prioridade", "concluida"})
+@EqualsAndHashCode(exclude = {"id", "dataInicial", "prioridade", "concluida"})
 //@Data => Substitui os 4 acima, mas dá erro com getData
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @ToString
@@ -50,25 +49,25 @@ public class Tarefa implements Serializable, Comparable<Tarefa> {
    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
    private Long id;
    
-   @NonNull
    @Temporal(javax.persistence.TemporalType.DATE)
    private Date prazo;
    
    @Temporal(javax.persistence.TemporalType.DATE)
-   private Date date;
+   private Date dataInicial;
    
    @ManyToOne
-   @JoinColumn(name = "projetoId", foreignKey = @ForeignKey(name = "fk_tarefa_projeto"))
+   @JoinColumn(name = "projetoId", nullable = false, foreignKey = @ForeignKey(name = "fk_tarefa_projeto"))
    private Projeto projeto;
    
-   @NonNull
    private String nome;
+   
    private int prioridade;
    private boolean concluida;   
    
-   public Tarefa(Date prazo, Date date, String nome, int prioridade, boolean concluida){
+   public Tarefa(Date prazo, Date dataInicial, Projeto projeto, String nome, int prioridade, boolean concluida){
        this.prazo = prazo;
-       this.date = date;
+       this.dataInicial = dataInicial;
+       this.projeto = projeto;
        this.nome = nome;
        this.prioridade = prioridade;
        this.concluida = concluida;
@@ -83,6 +82,10 @@ public class Tarefa implements Serializable, Comparable<Tarefa> {
         if (result ==0)
         {
             result = prazo.compareTo(o.prazo);
+        }
+        if (result ==0)
+        {
+            result = projeto.compareTo(o.projeto);
         }
         return result;
     }

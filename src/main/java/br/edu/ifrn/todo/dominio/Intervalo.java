@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -46,13 +47,10 @@ public class Intervalo implements Serializable, Comparable<Intervalo> {
     private Long id;
     
     @OneToOne 
-    @JoinColumn(name="atividadeId", foreignKey = @ForeignKey(name = "fk_intervalo_atividade")) 
+    @JoinColumn(name="atividadeId", nullable = false, foreignKey = @ForeignKey(name = "fk_intervalo_atividade")) 
     private Atividade atividade;
-    
-    @NonNull
+  
     private LocalTime horaInicio;
-    
-    @NonNull
     private LocalTime horaFim;
 
     @Override
@@ -61,6 +59,10 @@ public class Intervalo implements Serializable, Comparable<Intervalo> {
         if (result ==0)
         {
             result = horaFim.compareTo(o.horaFim);
+        }
+        if (result ==0)
+        {
+            result = atividade.compareTo(o.atividade);
         }
         return result;
     }
