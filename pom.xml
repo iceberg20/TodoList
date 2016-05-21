@@ -147,12 +147,6 @@
             <scope>test</scope>
             <type>jar</type>
         </dependency>
-        
-        <dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.0-api</artifactId>
-            <version>1.0.0.Final</version>
-        </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -170,6 +164,12 @@
                     <artifactId>selenium-remote-driver</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>1.0.0.Final</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
 

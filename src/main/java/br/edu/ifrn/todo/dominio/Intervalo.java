@@ -8,9 +8,12 @@ package br.edu.ifrn.todo.dominio;
 import java.io.Serializable;
 import java.time.LocalTime;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,6 +42,10 @@ public class Intervalo implements Serializable, Comparable<Intervalo> {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
     private Long id;
+    
+    @OneToOne 
+    @JoinColumn(name="atividadeId", foreignKey = @ForeignKey(name = "fk_intervalo_atividade")) 
+    private Atividade atividade;
     
     @NonNull
     private LocalTime horaInicio;

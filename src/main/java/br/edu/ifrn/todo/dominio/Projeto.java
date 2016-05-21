@@ -6,10 +6,13 @@
 package br.edu.ifrn.todo.dominio;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,6 +20,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -37,6 +42,16 @@ public class Projeto implements Serializable, Comparable<Projeto> {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
     private Long id;
+    
+    @ManyToOne
+    @JoinColumn(name = "usuarioId", foreignKey = @ForeignKey(name = "fk_projeto_usuario"))
+    private Usuario usuario;
+    
+//    @OneToMany(mappedBy = "projeto")
+//    private Set<Atividade> atividade;
+
+    @OneToMany(mappedBy = "projeto")
+    private Set<Tarefa> tarefa;
     
     private String nome;
 

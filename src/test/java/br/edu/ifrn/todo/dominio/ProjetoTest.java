@@ -10,12 +10,15 @@ import java.util.TreeSet;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  *
  * @author julia
  */
-public class ProjetoNGTest {
+public class ProjetoTest {
     
     private Projeto projeto1;
     private Projeto projeto2;
