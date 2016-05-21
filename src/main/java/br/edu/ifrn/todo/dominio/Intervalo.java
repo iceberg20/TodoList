@@ -6,22 +6,22 @@
 package br.edu.ifrn.todo.dominio;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.time.LocalTime;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 /**
  *
@@ -36,28 +36,31 @@ import javax.persistence.OneToMany;
 @ToString
 
 @Entity
-@SequenceGenerator(sequenceName = "seq_projeto", name = "ID_SEQUENCE", allocationSize = 1)
-public class Projeto implements Serializable, Comparable<Projeto> {
+@SequenceGenerator(sequenceName = "seq_intervalo", name = "ID_SEQUENCE", allocationSize = 1)
+public class Intervalo implements Serializable, Comparable<Intervalo> {
     
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
     private Long id;
     
-    @ManyToOne
-    @JoinColumn(name = "usuarioId", foreignKey = @ForeignKey(name = "fk_projeto_usuario"))
-    private Usuario usuario;
+    @OneToOne 
+    @JoinColumn(name="atividadeId", foreignKey = @ForeignKey(name = "fk_intervalo_atividade")) 
+    private Atividade atividade;
     
-//    @OneToMany(mappedBy = "projeto")
-//    private Set<Atividade> atividade;
-
-    @OneToMany(mappedBy = "projeto")
-    private Set<Tarefa> tarefa;
+    @NonNull
+    private LocalTime horaInicio;
     
-    private String nome;
+    @NonNull
+    private LocalTime horaFim;
 
     @Override
-    public int compareTo(Projeto o) {
-        return nome.compareTo(o.nome);
+    public int compareTo(Intervalo o) {
+        int result = horaInicio.compareTo(o.horaInicio);
+        if (result ==0)
+        {
+            result = horaFim.compareTo(o.horaFim);
+        }
+        return result;
     }
     
 }
