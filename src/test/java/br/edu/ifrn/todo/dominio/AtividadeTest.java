@@ -13,12 +13,13 @@ import java.util.TreeSet;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  *
  * @author julia
  */
-public class AtividadeNGTest {
+public class AtividadeTest {
     
     private Atividade atividade1; 
     private Atividade atividade2; 

@@ -10,12 +10,13 @@ import java.util.TreeSet;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  *
  * @author julia
  */
-public class UsuarioNGTest {
+public class UsuarioTest {
     
     private Usuario usuario1;
     private Usuario usuario2;

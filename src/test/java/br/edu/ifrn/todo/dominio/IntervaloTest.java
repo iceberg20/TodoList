@@ -11,12 +11,13 @@ import java.util.TreeSet;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  *
  * @author julia
  */
-public class IntervaloNGTest {
+public class IntervaloTest {
     
     private Intervalo int1;
     private Intervalo int2;
