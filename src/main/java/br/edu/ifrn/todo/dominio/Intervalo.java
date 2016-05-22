@@ -19,7 +19,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -39,18 +38,17 @@ import lombok.ToString;
 @SequenceGenerator(sequenceName = "seq_intervalo", name = "ID_SEQUENCE", allocationSize = 1)
 public class Intervalo implements Serializable, Comparable<Intervalo> {
     
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
     private Long id;
     
     @OneToOne 
-    @JoinColumn(name="atividadeId", foreignKey = @ForeignKey(name = "fk_intervalo_atividade")) 
+    @JoinColumn(name="atividadeId", nullable = false, foreignKey = @ForeignKey(name = "fk_intervalo_atividade")) 
     private Atividade atividade;
-    
-    @NonNull
+  
     private LocalTime horaInicio;
-    
-    @NonNull
     private LocalTime horaFim;
 
     @Override

@@ -23,22 +23,22 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, of = {"intervalo"})
 @Entity
 public class Atividade extends Tarefa{
     
     @OneToOne(mappedBy = "atividade")
     private Intervalo intervalo;
     
-//    @ManyToOne
-//    @JoinColumn(name = "projetoId", foreignKey = @ForeignKey(name = "fk_atividade_projeto"))
-//    private Projeto projeto;
-
-    
+    @ManyToOne
+    @JoinColumn(name = "projetoId", nullable = false, foreignKey = @ForeignKey(name = "fk_atividade_projeto"))
+    private Projeto projeto;
+  
     @Builder
-    public Atividade(Long id, Date prazo, Date data, Projeto projeto, String nome, int prioridade, boolean concluida, Intervalo intervalo) {
-        super(id, prazo, data, projeto, nome, prioridade, concluida);
+    public Atividade(Long id, Date prazo, Date dataInicial, Projeto projeto, String nome, int prioridade, boolean concluida, Intervalo intervalo) {
+        super(id, prazo, dataInicial, projeto, nome, prioridade, concluida);
         this.intervalo = intervalo;
-    }
+        this.projeto = projeto;
+    } 
     
 }
