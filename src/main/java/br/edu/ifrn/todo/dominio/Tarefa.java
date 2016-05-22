@@ -20,6 +20,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,7 +39,6 @@ import lombok.ToString;
 //@Data => Substitui os 4 acima, mas dá erro com getData
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @ToString
-
 @Entity
 @SequenceGenerator(sequenceName = "seq_tarefa", name = "ID_SEQUENCE", allocationSize = 1)
 public class Tarefa implements Serializable, Comparable<Tarefa> {
@@ -63,18 +63,6 @@ public class Tarefa implements Serializable, Comparable<Tarefa> {
    
    private int prioridade;
    private boolean concluida;   
-   
-   public Tarefa(Long id, Date prazo, Date dataInicial, String nome, int prioridade, boolean concluida){
-       this.prazo = prazo;
-       this.dataInicial = dataInicial;
-       this.nome = nome;
-       this.prioridade = prioridade;
-       this.concluida = concluida;
-       this.id = id;
-   }
-
-    Tarefa() {
-    }
 
     @Override
     public int compareTo(Tarefa o) {

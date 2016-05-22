@@ -35,8 +35,8 @@ public class Atividade extends Tarefa{
     private Projeto projeto;
   
     @Builder
-    public Atividade(Long id, Date prazo, Date dataInicial, String nome, int prioridade, boolean concluida, Intervalo intervalo, Projeto projeto) {
-        super(id, prazo, dataInicial, nome, prioridade, concluida);
+    public Atividade(Long id, Date prazo, Date dataInicial, Projeto projeto, String nome, int prioridade, boolean concluida, Intervalo intervalo) {
+        super(id, prazo, dataInicial, projeto, nome, prioridade, concluida);
         this.intervalo = intervalo;
         this.projeto = projeto;
     } 

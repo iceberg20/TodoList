@@ -58,10 +58,6 @@ public class Intervalo implements Serializable, Comparable<Intervalo> {
         {
             result = horaFim.compareTo(o.horaFim);
         }
-        if (result ==0)
-        {
-            result = atividade.compareTo(o.atividade);
-        }
         return result;
     }
     

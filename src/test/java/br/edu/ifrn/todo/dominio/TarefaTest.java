@@ -10,80 +10,76 @@ import java.util.Date;
 import java.util.Set;
 import java.util.TreeSet;
 import static org.assertj.core.api.Assertions.assertThat;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
  *
  * @author julia
  */
+@Test
 public class TarefaTest {
     
-    private Tarefa tarefa1; 
-    private Tarefa tarefa2; 
-    private Tarefa tarefa3;
-    private Tarefa tarefa4; 
-    private Tarefa tarefa5; 
+    private Tarefa tarefa; 
     private String nome1;
     private String nome2;
     private Date prazo;
-    private Date prazo2;
+    private Projeto projeto;
     
-    @BeforeClass
+    @BeforeMethod
     public void inicializacao(){
         nome1 = "Testar classes";
         nome2 = "Rodar testes";
-        tarefa1 = new Tarefa();
-        tarefa1.setNome(nome1);
-        
-        tarefa2 = new Tarefa();
-        tarefa2.setNome(nome1);
-        
-        tarefa3 = new Tarefa();
-        tarefa3.setNome(nome2);
-        
-        tarefa4 = new Tarefa();
-        tarefa4.setNome(nome2);
-        
-        tarefa5 = new Tarefa();
-        tarefa5.setNome(nome2);
-        
+        prazo = retornaPrazo(2016, 5, 21);
+        projeto = Projeto.builder().nome(nome1).usuario(Usuario.builder().email(nome1).build()).build();
+        tarefa = retornaTarefa(nome1, prazo, projeto);
+    }
+    
+    private Date retornaPrazo(int ano, int mes, int dia){
         Calendar cal = Calendar.getInstance();
-        cal.set(2016, 06, 01);
-        prazo = cal.getTime();
-        
-        Calendar cal2 = Calendar.getInstance();
-        cal2.set(2016, 06, 02);
-        prazo2 = cal2.getTime();
-        
-        tarefa3.setPrazo(prazo);
-        tarefa4.setPrazo(prazo2);
+        cal.set(ano, mes, dia);
+        return cal.getTime();
     }
     
-    @Test
-    public void nomesIguaisSemPrazo() {
-        assertThat(tarefa1).isEqualTo(tarefa2);
+    private Projeto retornaProjeto(String name){
+        Usuario user = Usuario.builder().email(name).build();
+        return Projeto.builder().nome(name).usuario(user).build();
     }
     
-    public void nomesPrazosIguais() {
-        assertThat(tarefa3).isEqualTo(tarefa4);
+    private Tarefa retornaTarefa(String name, Date prazo, Projeto projeto){
+        return (Tarefa)Atividade.builder().nome(name).prazo(prazo).projeto(projeto).build();
     }
-   
-    @Test
-    public void nomesIguaisComPrazosDiferentes() {
-        assertThat(tarefa4).isNotEqualTo(tarefa5);
-    }
-    
-    @Test
-    public void nomesDiferentes(){
-        assertThat(tarefa1.getNome()).isNotEqualTo(tarefa5); 
+
+    public void nomesPrazosProjetosIguais() {
+        assertThat(retornaTarefa(nome1, prazo, projeto)).isEqualTo(tarefa);
     }
     
-    @Test
+    public void nomesPrazosIguaisProjetosDiferentes() {
+        projeto = retornaProjeto(nome2);
+        assertThat(retornaTarefa(nome1, prazo, projeto)).isNotEqualTo(tarefa);
+    }
+    
+    public void nomesIguaisPrazosProjetosDiferentes() {
+        prazo = retornaPrazo(2016, 5, 22);
+        projeto = retornaProjeto(nome2);
+        assertThat(retornaTarefa(nome1, prazo, projeto)).isNotEqualTo(tarefa);
+    }
+    
+    public void nomesPrazosProjetosDiferentes() {
+        prazo = retornaPrazo(2016, 5, 22);
+        projeto = retornaProjeto(nome2);
+        assertThat(retornaTarefa(nome2, prazo, projeto)).isNotEqualTo(tarefa);
+    }
+
     public void compareTo() {
         Set<Tarefa> tarefas = new TreeSet<>();
         
-        tarefas.add(tarefa4);
+        Tarefa tarefa2 = retornaTarefa(nome2, prazo, projeto);
+        Projeto proj = retornaProjeto(nome2);
+        Tarefa tarefa3 = retornaTarefa(nome2, prazo, proj);
+                
+        tarefas.add(tarefa);
+        tarefas.add(tarefa2);
         tarefas.add(tarefa3);
         
         assertThat(tarefas.iterator().next()).isEqualTo(tarefa3);
