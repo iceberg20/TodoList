@@ -45,7 +45,7 @@
         <developer>
             <id>todolist</id>
             <name>Luan Gonçalvez Barbosa</name>
-            <email>luanluan.goncbs@gmail.com</email>
+            <email>luan.goncbs@gmail.com</email>
             <timezone>-3</timezone>
         </developer>
         <developer>
@@ -84,7 +84,8 @@
         <no-package-cycles-enforcer-rule.version>1.0.5</no-package-cycles-enforcer-rule.version>        
         <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
         <maven-surefire-report-plugin.version>2.19.1</maven-surefire-report-plugin.version>
-        <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>   
+        <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
+        <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
     </properties>
 
     <dependencies>
@@ -252,31 +253,31 @@
         </profile>
         
         <profile>
-                <id>attach-integration-test</id>
-                <build>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-failsafe-plugin</artifactId>
-                            <version>${maven-failsafe-plugin.version}</version>
-                            <executions>
-                                <execution>
-                                    <id>integration-test</id>
-                                    <goals>
-                                        <goal>integration-test</goal>
-                                    </goals>
-                                </execution>
-                                <execution>
-                                    <id>verify</id>
-                                    <goals>
-                                        <goal>verify</goal>
-                                    </goals>
-                                </execution>
-                            </executions>
-                        </plugin>                    
-                    </plugins>
-                </build>
-            </profile>
+            <id>attach-integration-test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${maven-failsafe-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>integration-test</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>verify</id>
+                                <goals>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>                    
+                </plugins>
+            </build>
+        </profile>
     </profiles> 
            
 </project>
