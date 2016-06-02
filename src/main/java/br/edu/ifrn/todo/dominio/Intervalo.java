@@ -8,15 +8,17 @@ package br.edu.ifrn.todo.dominio;
 import java.io.Serializable;
 import java.time.LocalTime;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -36,14 +38,17 @@ import lombok.ToString;
 @SequenceGenerator(sequenceName = "seq_intervalo", name = "ID_SEQUENCE", allocationSize = 1)
 public class Intervalo implements Serializable, Comparable<Intervalo> {
     
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
     private Long id;
     
-    @NonNull
+    @OneToOne 
+    @JoinColumn(name="atividadeId", nullable = false, foreignKey = @ForeignKey(name = "fk_intervalo_atividade")) 
+    private Atividade atividade;
+  
     private LocalTime horaInicio;
-    
-    @NonNull
     private LocalTime horaFim;
 
     @Override

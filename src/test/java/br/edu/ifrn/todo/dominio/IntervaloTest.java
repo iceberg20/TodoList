@@ -8,15 +8,16 @@ package br.edu.ifrn.todo.dominio;
 import java.time.LocalTime;
 import java.util.Set;
 import java.util.TreeSet;
-import static org.assertj.core.api.Assertions.assertThat;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import org.testng.annotations.BeforeMethod;
 
 /**
  *
  * @author julia
  */
-public class IntervaloNGTest {
+@Test
+public class IntervaloTest {
     
     private Intervalo int1;
     private Intervalo int2;
@@ -25,7 +26,7 @@ public class IntervaloNGTest {
     private LocalTime fim1;
     private LocalTime fim2;
     
-    @BeforeClass
+    @BeforeMethod
     public void inicializacao(){
         inicio1 = LocalTime.of(10, 10);
         inicio2 = LocalTime.of(9, 9);
@@ -35,31 +36,26 @@ public class IntervaloNGTest {
         int2 = Intervalo.builder().horaInicio(inicio2).horaFim(fim2).build();
     }
     
-    @Test
     public void inicioFimIguais() {
         assertThat(Intervalo.builder().horaInicio(inicio1).horaFim(fim1).build())
                 .isEqualTo(int1);
     }
     
-    @Test
     public void inicioIgualFimDiferente() {
         assertThat(Intervalo.builder().horaInicio(inicio1).horaFim(fim2).build())
                 .isNotEqualTo(int1);
     }
-    
-    @Test
+
     public void inicioDiferenteFimIgual() {
         assertThat(Intervalo.builder().horaInicio(inicio2).horaFim(fim1).build())
                 .isNotEqualTo(int1);
     }
-    
-    @Test
+
     public void inicioFimDiferentes() {
         assertThat(Intervalo.builder().horaInicio(inicio2).horaFim(fim2).build())
                 .isNotEqualTo(int1);
     }
-    
-    @Test
+
     public void compareTo() {
         Set<Intervalo> intervalos = new TreeSet<>();
         
