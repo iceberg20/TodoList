@@ -2,3 +2,4 @@ target/
 
 #Arquivo separado de teste
 src/test/java/br/edu/ifrn/todo/dominio/TarefaTests.java
+nbactions.xml
