@@ -3,7 +3,7 @@ package br.edu.ifrn.todo.persistencia;
 import br.edu.ifrn.todo.dominio.Intervalo;
 import java.util.Iterator;
 
-public interface IntervaloRepositorio {
+public interface IntervaloRepository {
 
     void save(Intervalo objeto);
 

@@ -3,7 +3,7 @@ package br.edu.ifrn.todo.persistencia;
 import br.edu.ifrn.todo.dominio.Tarefa;
 import java.util.Iterator;
 
-public interface TarefaRepositorio {
+public interface TarefaRepository {
 
     void save(Tarefa objeto);
 
