@@ -3,12 +3,8 @@ package br.edu.ifrn.todo.persistencia;
 import br.edu.ifrn.todo.dominio.Usuario;
 import java.util.Iterator;
 
-public interface UsuarioRepositorio {
+public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 
-    void save(Usuario objeto);
-
-    void delete(Usuario objeto);
-    
-    Iterator<Usuario> iterator();
+    Usuario findByEmail(String email);
     
 }
