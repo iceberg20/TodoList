@@ -24,7 +24,7 @@ import br.edu.ifrn.todo.persistencia.UsuarioRepository;
  @SpringApplicationConfiguration(classes = TodoApplication.class)
  @WebAppConfiguration
  @Test(groups = "Usuario")
-public class UsuarioRepositoryIT {
+public class UsuarioRepositoryIT extends AbstractTestNGSpringContextTests {
      @Inject
      private UsuarioRepository usuarioRepository;
      
