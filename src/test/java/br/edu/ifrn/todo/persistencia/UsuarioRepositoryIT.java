@@ -7,6 +7,7 @@ package br.edu.ifrn.todo.persistencia;
 
 import br.edu.ifrn.todo.TodoApplication;
 import br.edu.ifrn.todo.dominio.Usuario;
+import br.edu.ifrn.todo.persistencia.UsuarioRepository;
  import javax.inject.Inject;
  import org.springframework.boot.test.SpringApplicationConfiguration;
  import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
