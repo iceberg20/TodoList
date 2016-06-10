@@ -60,5 +60,19 @@ public class UsuarioRepositoryIT extends AbstractTestNGSpringContextTests {
            // verifica o efeito da execucao da operacao a ser testada
            assertThat(usuarioRepository.findAll().iterator().next()).isEqualTo(usuario);
        }
+     
+     public void encontrarUsuarioPorEmail(){
+         Usuario usuario = Usuario.builder()
+                 .nome("maria")
+                 .email("maria@gmail.com")
+                 .build();
+         
+         usuarioRepository.save(usuario);
+         
+         Usuario usuarioEncontrado =  usuarioRepository.findByEmail("maria@gmail.com");
+         
+         assertThat(usuarioEncontrado.email()).isEqualTo("maria@gmail.com");
+         
+     }
     
 }
