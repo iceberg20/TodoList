@@ -50,6 +50,10 @@ public class Usuario implements Serializable, Comparable<Usuario>{
     private String senha;
     private int nivel;
     private int combo;
+
+    public Usuario(String maria) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     @Override
     public int compareTo(Usuario o) {
