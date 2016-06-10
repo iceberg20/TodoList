@@ -36,6 +36,7 @@ import lombok.ToString;
 
 @Entity
 @SequenceGenerator(sequenceName = "seq_intervalo", name = "ID_SEQUENCE", allocationSize = 1)
+
 public class Intervalo implements Serializable, Comparable<Intervalo> {
     
     private static final long serialVersionUID = 1L;

@@ -56,7 +56,7 @@ public class Tarefa implements Serializable, Comparable<Tarefa> {
    private Date dataInicial;
    
    @ManyToOne
-   @JoinColumn(name = "projetoId", nullable = false, foreignKey = @ForeignKey(name = "fk_tarefa_projeto"))
+   @JoinColumn(name = "projetoId", insertable=false, updatable=false, nullable = false, foreignKey = @ForeignKey(name = "fk_tarefa_projeto"))
    private Projeto projeto;
    
    private String nome;

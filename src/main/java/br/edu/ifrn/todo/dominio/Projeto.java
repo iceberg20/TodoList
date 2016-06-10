@@ -46,7 +46,7 @@ public class Projeto implements Serializable, Comparable<Projeto> {
     private Long id;
     
     @ManyToOne
-    @JoinColumn(name = "usuarioId", nullable = false, foreignKey = @ForeignKey(name = "fk_projeto_usuario"))
+    @JoinColumn(name = "usuarioId", nullable = false, insertable=false, updatable=false, foreignKey = @ForeignKey(name = "fk_projeto_usuario"))
     private Usuario usuario;
     
     @OneToMany(mappedBy = "projeto")
