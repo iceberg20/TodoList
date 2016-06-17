@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.edu.ifrn.todo.persistencia;
 
 import br.edu.ifrn.todo.TodoApplication;
+import br.edu.ifrn.todo.dominio.Atividade;
 import br.edu.ifrn.todo.dominio.Tarefa;
 import javax.inject.Inject;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -41,11 +38,9 @@ public class TarefaRepositoryIT extends AbstractTestNGSpringContextTests {
      
      public void findOneByExample () {
          // cria o ambiente de teste
-         Tarefa tarefa = new Tarefa("Estudar");
+         Tarefa tarefa = (Tarefa)Atividade.builder().nome("Estudar").prazo(prazo).projeto(projeto).build();
  
-         ContaCredito tarefaExemplo = ContaCredito.builder()
-             .categoria(Categoria.builder().descricao(FabricaDominio.SALARIO).build())
-             .build();
+         
                         
          // executa a operacao a ser testada
          // verifica o efeito da execucao da operacao a ser testada
