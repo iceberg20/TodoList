@@ -59,8 +59,4 @@ public class Usuario implements Serializable, Comparable<Usuario>{
     public int compareTo(Usuario o) {
         return email.compareTo(o.email);
     }
-    
-    public String email(){
-        return this.email;
-    }
 }

@@ -20,4 +20,8 @@ public class UsuarioFactory {
         usuarioRepository.save(usuario);
         return usuario;
     }
+    
+    public Usuario usuario(String email) {
+        return usuarioRepository.findByEmail(email);
+    }
 }

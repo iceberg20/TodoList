@@ -4,7 +4,9 @@ import br.edu.ifrn.todo.dominio.Atividade;
 import java.util.Calendar;
 import java.util.Date;
 import javax.inject.Inject;
+import javax.inject.Named;
 
+@Named
 public class AtividadeFactory {
     public final static String ATIVIDADE = "Terminar testes";
     public Date prazo = retornaPrazo(2016, 07, 07);

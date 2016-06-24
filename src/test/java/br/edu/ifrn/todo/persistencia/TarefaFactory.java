@@ -18,7 +18,7 @@ public class TarefaFactory {
     @Inject
     private TarefaRepository tarefaRepository;
     
-    private Date retornaPrazo(int ano, int mes, int dia){
+    public Date retornaPrazo(int ano, int mes, int dia){
         Calendar cal = Calendar.getInstance();
         cal.set(ano, mes, dia);
         return cal.getTime();

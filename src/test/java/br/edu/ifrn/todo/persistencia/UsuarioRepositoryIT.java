@@ -1,32 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifrn.todo.persistencia;
 
 import br.edu.ifrn.todo.TodoApplication;
 import br.edu.ifrn.todo.dominio.Usuario;
-import br.edu.ifrn.todo.persistencia.UsuarioRepository;
- import javax.inject.Inject;
- import org.springframework.boot.test.SpringApplicationConfiguration;
- import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
- import org.springframework.test.context.web.WebAppConfiguration;
- import org.testng.annotations.Test;
- import org.testng.annotations.BeforeMethod;
- import static org.assertj.core.api.Assertions.assertThat;
-
-/**
- *
- * @author italo
- */
+import javax.inject.Inject;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
+import static org.assertj.core.api.Assertions.assertThat;
 
  @SpringApplicationConfiguration(classes = TodoApplication.class)
  @WebAppConfiguration
- @Test(groups = "Usuario")
+ @Test(groups = "usuario")
 public class UsuarioRepositoryIT extends AbstractTestNGSpringContextTests {
      @Inject
      private UsuarioRepository usuarioRepository;
+     
+     @Inject
+     private UsuarioFactory usuarioFactory;
      
      @BeforeMethod
      void deletarTodos()
@@ -41,7 +33,7 @@ public class UsuarioRepositoryIT extends AbstractTestNGSpringContextTests {
      
       public void deletarUm () {
          // cria o ambiente de teste
-         Usuario usuario = Usuario.builder().nome("maria").build();
+         Usuario usuario = usuarioFactory.usuario();
          
          // executa a operacao a ser testada
          usuarioRepository.delete(usuario);
@@ -52,7 +44,10 @@ public class UsuarioRepositoryIT extends AbstractTestNGSpringContextTests {
       
      public void salvarUm () {
           // cria o ambiente de teste
-          Usuario usuario = Usuario.builder().nome("maria").build();
+          Usuario usuario = Usuario.builder()
+                  .nome("maria")
+                  .email("maria@gmail.com")
+                  .build();
            
            // executa a operacao a ser testada
            usuarioRepository.save(usuario);
@@ -69,10 +64,9 @@ public class UsuarioRepositoryIT extends AbstractTestNGSpringContextTests {
          
          usuarioRepository.save(usuario);
          
-         Usuario usuarioEncontrado =  usuarioRepository.findByEmail("maria@gmail.com");
+         Usuario usuarioEncontrado =  usuarioFactory.usuario("maria@gmail.com");
          
-         assertThat(usuarioEncontrado.email()).isEqualTo("maria@gmail.com");
-         
+         assertThat(usuarioEncontrado.getEmail()).isEqualTo("maria@gmail.com");         
      }
     
 }
