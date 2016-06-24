@@ -62,7 +62,7 @@ public class Tarefa implements Serializable, Comparable<Tarefa> {
    private String nome;
    
    private int prioridade;
-   private boolean concluida;   
+   private boolean concluida = false;  
 
     @Override
     public int compareTo(Tarefa o) {
@@ -76,6 +76,10 @@ public class Tarefa implements Serializable, Comparable<Tarefa> {
             result = projeto.compareTo(o.projeto);
         }
         return result;
+    }
+    
+    public void concluida(){
+        this.concluida = true;
     }
     
 }
