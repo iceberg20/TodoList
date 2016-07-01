@@ -5,6 +5,7 @@ import br.edu.ifrn.todo.dominio.Projeto;
 import javax.inject.Inject;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -12,7 +13,7 @@ import org.testng.annotations.Test;
 @SpringApplicationConfiguration(classes = TodoApplication.class)
 @WebAppConfiguration
 @Test(groups = "projeto")
-public class ProjetoRepositoryIT {
+public class ProjetoRepositoryIT extends AbstractTestNGSpringContextTests {
     @Inject
     private ProjetoRepository projetoRepository;
 
