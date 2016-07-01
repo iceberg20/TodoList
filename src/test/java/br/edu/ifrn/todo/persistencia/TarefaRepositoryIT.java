@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringApplicationConfiguration(classes = TodoApplication.class)
 @WebAppConfiguration
-@Test(groups = "tarefa", dependsOnGroups = {"usuario"})
+@Test(groups = "tarefa", dependsOnGroups = {"usuario", "projeto"})
 public class TarefaRepositoryIT extends AbstractTestNGSpringContextTests {
     
     @Inject

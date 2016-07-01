@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 
 @SpringApplicationConfiguration(classes = TodoApplication.class)
 @WebAppConfiguration
-@Test(groups = "intervalo")
+@Test(groups = "intervalo", dependsOnGroups = {"atividade"})
 public class IntervaloRepositoryIT extends AbstractTestNGSpringContextTests {
     @Inject
     private IntervaloRepository intervaloRepository;
