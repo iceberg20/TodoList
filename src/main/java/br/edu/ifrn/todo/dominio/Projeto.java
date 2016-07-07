@@ -22,6 +22,7 @@ import lombok.Setter;
 import lombok.ToString;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import lombok.NoArgsConstructor;
 
 /**
  *
@@ -31,6 +32,7 @@ import javax.persistence.OneToMany;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(exclude = {"id", "tarefas", "atividades"})
 @Builder
 @ToString
@@ -46,7 +48,7 @@ public class Projeto implements Serializable, Comparable<Projeto> {
     private Long id;
     
     @ManyToOne
-    @JoinColumn(name = "usuarioId", nullable = false, insertable=false, updatable=false, foreignKey = @ForeignKey(name = "fk_projeto_usuario"))
+    @JoinColumn(name = "usuarioId", insertable=false, updatable=false, nullable = false, foreignKey = @ForeignKey(name = "fk_projeto_usuario"))
     private Usuario usuario;
     
     @OneToMany(mappedBy = "projeto")

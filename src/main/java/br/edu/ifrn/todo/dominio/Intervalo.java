@@ -19,6 +19,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -30,6 +31,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(exclude = {"id"})
 @Builder
 @ToString
@@ -46,7 +48,7 @@ public class Intervalo implements Serializable, Comparable<Intervalo> {
     private Long id;
     
     @OneToOne 
-    @JoinColumn(name="atividadeId", nullable = false, foreignKey = @ForeignKey(name = "fk_intervalo_atividade")) 
+    @JoinColumn(name="atividadeId", insertable=false, updatable=false, nullable = false, foreignKey = @ForeignKey(name = "fk_intervalo_atividade")) 
     private Atividade atividade;
   
     private LocalTime horaInicio;

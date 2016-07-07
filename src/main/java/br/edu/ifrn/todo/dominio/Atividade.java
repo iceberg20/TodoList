@@ -31,7 +31,7 @@ public class Atividade extends Tarefa{
     private Intervalo intervalo;
     
     @ManyToOne
-    @JoinColumn(name = "projetoId", nullable = false, insertable=false, updatable=false, foreignKey = @ForeignKey(name = "fk_atividade_projeto"))
+    @JoinColumn(name = "projetoId", insertable=false, updatable=false, nullable = false, foreignKey = @ForeignKey(name = "fk_atividade_projeto"))
     private Projeto projeto;
   
     @Builder

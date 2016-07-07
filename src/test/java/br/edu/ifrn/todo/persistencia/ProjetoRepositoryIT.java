@@ -35,6 +35,7 @@ public class ProjetoRepositoryIT extends AbstractTestNGSpringContextTests {
 
     public void deletarUm() {
         // cria o ambiente de teste
+        //throw new RuntimeException("Erro no projeto");
         Projeto projeto = projetoFactory.projeto();
 
         // executa a operacao a ser testada

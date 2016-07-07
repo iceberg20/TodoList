@@ -26,7 +26,7 @@ public class UsuarioRepositoryIT extends AbstractTestNGSpringContextTests {
         usuarioRepository.deleteAll();
         assertThat(usuarioRepository.findAll()).isEmpty();
     }
-
+    
     public void repositorioNaoEhNulo() {
         assertThat(usuarioRepository).isNotNull();
     }
@@ -64,9 +64,10 @@ public class UsuarioRepositoryIT extends AbstractTestNGSpringContextTests {
 
         usuarioRepository.save(usuario);
 
-        Usuario usuarioEncontrado = usuarioFactory.usuario("maria@gmail.com");
+        Usuario usuarioEncontrado = usuarioRepository.findByEmail("maria@gmail.com");
 
         assertThat(usuarioEncontrado.getEmail()).isEqualTo("maria@gmail.com");
+        
     }
 
 }
