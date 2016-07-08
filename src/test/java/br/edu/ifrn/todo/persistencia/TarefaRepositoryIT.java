@@ -25,6 +25,7 @@ public class TarefaRepositoryIT extends AbstractTestNGSpringContextTests {
      @Inject
      private TarefaRepository tarefaRepository;
      
+     
      @BeforeMethod
      void deletarTodos()
      {
@@ -36,15 +37,4 @@ public class TarefaRepositoryIT extends AbstractTestNGSpringContextTests {
          assertThat(tarefaRepository).isNotNull();
      }
      
-     public void findOneByExample () {
-         // cria o ambiente de teste
-         Tarefa tarefa = (Tarefa)Atividade.builder().nome("Estudar").prazo(prazo).projeto(projeto).build();
- 
-         
-                        
-         // executa a operacao a ser testada
-         // verifica o efeito da execucao da operacao a ser testada
-         assertThat(tarefaRepository.findOne(Example.of(tarefaExemplo)))
-             .isEqualTo(tarefa);
-     }
 }
