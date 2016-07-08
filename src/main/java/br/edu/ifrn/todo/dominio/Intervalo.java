@@ -47,9 +47,9 @@ public class Intervalo implements Serializable, Comparable<Intervalo> {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
     private Long id;
     
-    @OneToOne 
-    @JoinColumn(name="atividadeId", insertable=false, updatable=false, nullable = false, foreignKey = @ForeignKey(name = "fk_intervalo_atividade")) 
-    private Atividade atividade;
+//    @OneToOne 
+//    @JoinColumn(name="atividadeId", nullable = false, foreignKey = @ForeignKey(name = "fk_intervalo_atividade")) 
+//    private Atividade atividade;
   
     private LocalTime horaInicio;
     private LocalTime horaFim;

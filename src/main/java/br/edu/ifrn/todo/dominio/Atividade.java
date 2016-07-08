@@ -27,7 +27,7 @@ import lombok.ToString;
 @Entity
 public class Atividade extends Tarefa{
     
-    @OneToOne(mappedBy = "atividade")
+    //@OneToOne(mappedBy = "atividade")
     private Intervalo intervalo;
     
     @ManyToOne

@@ -108,7 +108,7 @@ public class ProjetoServicoIT extends AbstractTestNGSpringContextTests {
         
         
         // verifica o efeito da execucao da operacao a ser testada
-        assertThat(projetoServico.tarefasAbertas(projeto)).equals(2);
+        assertThat(projetoServico.tarefasAbertas(projeto)).isEqualTo(2);
     }
     
     public void tarefasFechadas () {
@@ -126,7 +126,7 @@ public class ProjetoServicoIT extends AbstractTestNGSpringContextTests {
         t1.concluida();
         t2.concluida();
         // verifica o efeito da execucao da operacao a ser testada
-        assertThat(projetoServico.tarefasFechadas(projeto)).equals(2);
+        assertThat(projetoServico.tarefasFechadas(projeto)).isEqualTo(2);
     }
 }
    
