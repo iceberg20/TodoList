@@ -64,4 +64,13 @@ public class Intervalo implements Serializable, Comparable<Intervalo> {
         return result;
     }
     
+    public void verificarAtributos() {
+        if (horaInicio.equals(horaFim)) {
+            throw new IllegalArgumentException("O fim do intervalo não pode ser igual ao início: " + horaFim);
+        }
+        if (horaFim.isAfter(horaInicio)) {
+            throw new IllegalArgumentException("O fim do intervalo não pode ser anterior ao inicio: " + horaFim);     
+        }    
+    }
+    
 }

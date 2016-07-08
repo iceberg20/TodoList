@@ -69,4 +69,13 @@ public class Projeto implements Serializable, Comparable<Projeto> {
         return result;
     }
     
+    public void verificarAtributos() {
+        if (atividades instanceof Tarefa) {
+            throw new IllegalArgumentException("Atividades precisam de intervalos: " + atividades);
+        }
+        if (tarefas instanceof Atividade) {
+            throw new IllegalArgumentException("Tarefas não podem ser atividades: " + tarefas);     
+        }    
+    }
+    
 }

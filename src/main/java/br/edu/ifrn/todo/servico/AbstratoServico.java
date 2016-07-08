@@ -3,7 +3,9 @@ package br.edu.ifrn.todo.servico;
 import java.io.Serializable;
 import javax.inject.Inject;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional(readOnly = true)
 public class AbstratoServico <T extends Object, ID extends Serializable> {
     
     private CrudRepository<T, ID> repository;
@@ -13,29 +15,56 @@ public class AbstratoServico <T extends Object, ID extends Serializable> {
         this.repository = repository;
     }
     
-    public void save(T objeto) {
-        // realizar verificacoes de negocio
-                
-        // delega a persistencia para o repositorio
-        repository.save(objeto);
+    @Transactional
+    public <S extends T> Iterable<S> save(Iterable<S> objetos) {
+        return repository.save(objetos);
     }
     
+    @Transactional
+    public <S extends T> S save(S objeto) {
+        return repository.save(objeto);
+    }
+    
+    @Transactional
+    public void delete(Iterable<? extends T> objetos) {
+        repository.delete(objetos);
+    }
+    
+    @Transactional
+    public void delete(ID id) {
+        repository.delete(id);
+    }
+    
+    @Transactional
     public void delete(T objeto) {
-        // realizar verificacoes de negocio
-                
-        // delega a persistencia para o repositorio
         repository.delete(objeto);
+    }
+    
+    @Transactional
+    public void deleteAll() {
+        repository.deleteAll();
+    }
+    
+    public T findOne(ID id) {
+        return repository.findOne(id);
     }
     
     public Iterable<T> findAll() {
         return repository.findAll();
     }
     
-    public void deleteAll() {
-        // realizar verificacoes de negocio
-                
-        // delega a persistencia para o repositorio
-        repository.deleteAll();
+    public Iterable<T> findAll(Iterable<ID> ids) {
+        return repository.findAll(ids);
     }
+    
+    public long count() {
+        return repository.count();
+    }
+    
+    public boolean exists(ID id) {
+        return repository.exists(id);
+    }
+    
+    
     
 }
