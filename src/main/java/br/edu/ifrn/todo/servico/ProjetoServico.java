@@ -30,4 +30,5 @@ public class ProjetoServico extends AbstratoServico<Projeto, Long> {
         objeto.verificarAtributos();
         return super.save(objeto);
     }
+    
 }

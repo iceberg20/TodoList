@@ -14,26 +14,24 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-
-
 @SpringApplicationConfiguration(classes = TodoApplication.class)
 @WebAppConfiguration
-@Test(groups = "projeto")
-public class ProjetoServicoIT extends AbstractTestNGSpringContextTests {
-
-    @Inject
-    private ProjetoServico projetoServico;
+@Test(groups = "tarefa", dependsOnGroups = {"projeto"})
+public class TarefaServicoIT extends AbstractTestNGSpringContextTests {
     
     @Inject
     private UsuarioServico usuarioServico;
     
+    @Inject
+    private TarefaServico tarefaServico;
+    
     @BeforeMethod
     void deletarTodos()
     {
-        projetoServico.deleteAll();
         usuarioServico.deleteAll();
-        assertThat(projetoServico.findAll()).isEmpty();
+        tarefaServico.deleteAll();
         assertThat(usuarioServico.findAll()).isEmpty();
+        assertThat(tarefaServico.findAll()).isEmpty();
     }
     
     private Usuario usuario(){
@@ -46,6 +44,15 @@ public class ProjetoServicoIT extends AbstractTestNGSpringContextTests {
                 .build();
         }
         return usuario;
+    }
+    
+    private Projeto projeto(String nome){
+        Projeto projeto = Projeto.builder()
+                .nome(nome)
+                .usuario(usuario())
+                .build();
+        
+        return projeto;
     }
     
     private Tarefa tarefa(String nome, Projeto projeto){
@@ -62,71 +69,46 @@ public class ProjetoServicoIT extends AbstractTestNGSpringContextTests {
     }
     
     public void repositorioNaoEhNulo () {
-        assertThat(projetoServico).isNotNull();
+        assertThat(tarefaServico).isNotNull();
     }
     
     public void salvarUm () {
         // cria o ambiente de teste
-        Projeto projeto = Projeto.builder()
-                .nome("Testes")
-                .usuario(usuario())
-                .build();
+        Tarefa tarefa = tarefa("rodar testes", projeto("Testes"));
         
         // executa a operacao a ser testada
-        projetoServico.save(projeto);
+        tarefaServico.save(tarefa);
         
         // verifica o efeito da execucao da operacao a ser testada
-        assertThat(projetoServico.findAll().iterator().next()).isEqualTo(projeto);
+        assertThat(tarefaServico.findAll().iterator().next()).isEqualTo(tarefa);
     }
    
     public void deletarUm () {
         // cria o ambiente de teste
-        Projeto projeto = Projeto.builder()
-                .nome("Testes2")
-                .usuario(usuario())
-                .build();
-        projetoServico.save(projeto);
+        Tarefa tarefa = tarefa("rodar testes", projeto("Testes"));
+        
+        tarefaServico.save(tarefa);
         
         // executa a operacao a ser testada
-        projetoServico.delete(projeto);
+        tarefaServico.delete(tarefa);
         
         // verifica o efeito da execucao da operacao a ser testada
-        assertThat(projetoServico.findAll().iterator().hasNext()).isFalse();
+        assertThat(tarefaServico.findAll().iterator().hasNext()).isFalse();
     }
     
-    public void tarefasAbertas () {
+    public void transferir () {
         // cria o ambiente de teste
-        Projeto projeto = Projeto.builder()
-                .nome("Abertas")
-                .usuario(usuario())
-                .build();
-        projetoServico.save(projeto);
+        Projeto p1 = projeto("Testes");
+        Projeto p2 = projeto("Servicos");
+        
+        Tarefa tarefa = tarefa("rodar testes", p1);
+        
+        tarefaServico.save(tarefa);
         
         // executa a operacao a ser testada
-        Tarefa t1 = tarefa("Implementar testas", projeto);
-        Tarefa t2 = tarefa("Rodar testes", projeto);
-        
+        tarefaServico.transferir(p1, p2, tarefa);
         
         // verifica o efeito da execucao da operacao a ser testada
-        assertThat(projetoServico.tarefasAbertas(projeto)).equals(2);
-    }
-    
-    public void tarefasFechadas () {
-        // cria o ambiente de teste
-        Projeto projeto = Projeto.builder()
-                .nome("Fechadas")
-                .usuario(usuario())
-                .build();
-        projetoServico.save(projeto);
-        
-        // executa a operacao a ser testada
-        Tarefa t1 = tarefa("Implementar testas", projeto);
-        Tarefa t2 = tarefa("Rodar testes", projeto);
-        
-        t1.concluida();
-        t2.concluida();
-        // verifica o efeito da execucao da operacao a ser testada
-        assertThat(projetoServico.tarefasFechadas(projeto)).equals(2);
+        assertThat(tarefa.getProjeto()).isEqualTo(p2);
     }
 }
-   
