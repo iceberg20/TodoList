@@ -62,7 +62,7 @@ public class TarefaRepositoryIT extends AbstractTestNGSpringContextTests {
         tarefaRepository.save(tarefa);
         
         // verifica o efeito da execucao da operacao a ser testada
-        assertThat(tarefaRepository.findAll()).hasSize(1); 
-        //assertThat(tarefaRepository.findAll().iterator().next()).isEqualTo(tarefa);
+        //assertThat(tarefaRepository.findAll()).hasSize(1); 
+        assertThat(tarefaRepository.findAll().iterator().next()).isEqualTo(tarefa);
     }
 }

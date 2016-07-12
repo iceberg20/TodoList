@@ -22,7 +22,7 @@ public class AtividadeFactory {
     
     public Date retornaPrazo(int ano, int mes, int dia){
         Calendar cal = Calendar.getInstance();
-        cal.set(ano, mes, dia);
+        cal.set(ano, mes, dia, 0, 0, 0);
         return cal.getTime();
     }
     

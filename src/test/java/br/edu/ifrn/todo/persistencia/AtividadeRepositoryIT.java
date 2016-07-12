@@ -2,7 +2,6 @@ package br.edu.ifrn.todo.persistencia;
 
 import br.edu.ifrn.todo.TodoApplication;
 import br.edu.ifrn.todo.dominio.Atividade;
-import java.util.Set;
 import javax.inject.Inject;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -51,7 +50,7 @@ public class AtividadeRepositoryIT extends AbstractTestNGSpringContextTests {
     
     public void salvarUm () {
         //verifica se não tem nenhuma atividade
-        assertThat(atividadeRepository.findAll()).isEmpty();
+        assertThat(atividadeRepository.findAll()).hasSize(0);
         
         // cria o ambiente de teste
         Atividade atividade = Atividade.builder()
@@ -65,9 +64,8 @@ public class AtividadeRepositoryIT extends AbstractTestNGSpringContextTests {
         atividadeRepository.save(atividade);
         
         // verifica se a atividade foi adicionada
-        Iterable<Atividade> tmp = atividadeRepository.findAll();
-        // assertThat(atividadeRepository.findAll()).hasSize(1); 
+        //assertThat(atividadeRepository.findAll()).hasSize(1); 
         //assertThat(atividadeRepository.findAll()).contains(atividade);
-        assertThat(tmp.iterator().next()).isEqualTo(atividade);
+        assertThat(atividadeRepository.findAll().iterator().next()).isEqualTo(atividade);
     }
 }

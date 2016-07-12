@@ -6,7 +6,6 @@
 package br.edu.ifrn.todo.dominio;
 
 import java.io.Serializable;
-import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -21,7 +20,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import lombok.NoArgsConstructor;
 
 /**
@@ -33,10 +31,9 @@ import lombok.NoArgsConstructor;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = {"id", "tarefas", "atividades"})
+@EqualsAndHashCode(exclude = {"id"})
 @Builder
 @ToString
-
 @Entity
 @SequenceGenerator(sequenceName = "seq_projeto", name = "ID_SEQUENCE", allocationSize = 1)
 public class Projeto implements Serializable, Comparable<Projeto> {
@@ -54,8 +51,8 @@ public class Projeto implements Serializable, Comparable<Projeto> {
 //    @OneToMany(mappedBy = "projeto")
 //    private Set<Atividade> atividades;
 
-    @OneToMany(mappedBy = "projeto")
-    private Set<Tarefa> tarefas;
+//    @OneToMany(mappedBy = "projeto")
+//    private Set<Tarefa> tarefas;
     
     private String nome;
 
