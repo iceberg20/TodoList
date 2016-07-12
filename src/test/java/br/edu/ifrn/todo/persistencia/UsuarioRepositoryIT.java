@@ -20,9 +20,13 @@ public class UsuarioRepositoryIT extends AbstractTestNGSpringContextTests {
 
     @Inject
     private UsuarioFactory usuarioFactory;
+    
+    @Inject
+    private ProjetoRepository projetoRepository;
 
     @BeforeMethod
     void deletarTodos() {
+        projetoRepository.deleteAll();
         usuarioRepository.deleteAll();
         assertThat(usuarioRepository.findAll()).isEmpty();
     }

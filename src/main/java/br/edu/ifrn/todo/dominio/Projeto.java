@@ -51,8 +51,8 @@ public class Projeto implements Serializable, Comparable<Projeto> {
     @JoinColumn(name = "usuarioId",  nullable = false, foreignKey = @ForeignKey(name = "fk_projeto_usuario"))
     private Usuario usuario;
     
-    @OneToMany(mappedBy = "projeto")
-    private Set<Atividade> atividades;
+//    @OneToMany(mappedBy = "projeto")
+//    private Set<Atividade> atividades;
 
     @OneToMany(mappedBy = "projeto")
     private Set<Tarefa> tarefas;
@@ -70,12 +70,9 @@ public class Projeto implements Serializable, Comparable<Projeto> {
     }
     
     public void verificarAtributos() {
-        if (atividades instanceof Tarefa) {
-            throw new IllegalArgumentException("Atividades precisam de intervalos: " + atividades);
-        }
-        if (tarefas instanceof Atividade) {
-            throw new IllegalArgumentException("Tarefas não podem ser atividades: " + tarefas);     
-        }    
+//        if (tarefas instanceof Atividade ) {
+//            throw new IllegalArgumentException("Tarefas não podem ser atividades: " + tarefas);     
+//        }    
     }
     
 }

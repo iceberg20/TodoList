@@ -22,4 +22,13 @@ public class ProjetoFactory {
         projetoRepository.save(projeto);
         return projeto;
     } 
+    
+    public Projeto projeto(String nome) {
+        Projeto projeto = Projeto.builder()
+                .nome(nome)
+                .usuario(usuarioFactory.usuario())
+                .build();
+        projetoRepository.save(projeto);
+        return projeto;
+    } 
 }

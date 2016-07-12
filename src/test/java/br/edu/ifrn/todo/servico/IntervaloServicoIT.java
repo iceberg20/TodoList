@@ -2,7 +2,6 @@ package br.edu.ifrn.todo.servico;
 
 import br.edu.ifrn.todo.TodoApplication;
 import br.edu.ifrn.todo.dominio.Intervalo;
-import br.edu.ifrn.todo.persistencia.AtividadeFactory;
 import java.time.LocalTime;
 import javax.inject.Inject;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,9 +21,6 @@ public class IntervaloServicoIT extends AbstractTestNGSpringContextTests {
     
     @Inject
     private IntervaloServico intervaloServico;
-    
-    @Inject
-    private AtividadeFactory atividadeFactory;
     
     @BeforeMethod
     void deletarTodos()

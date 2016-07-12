@@ -105,7 +105,7 @@ public class AtividadeTest {
         projeto = retornaProjeto(nome2);
         Atividade atividade4 = retornaAtividade(nome2, prazo, projeto, intervalo);
                 
-        atividades.add(atividade);
+        //atividades.add(atividade);
         atividades.add(atividade2);
         atividades.add(atividade3);
         atividades.add(atividade4);
