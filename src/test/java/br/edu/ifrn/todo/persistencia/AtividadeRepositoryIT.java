@@ -55,7 +55,6 @@ public class AtividadeRepositoryIT extends AbstractTestNGSpringContextTests {
         // cria o ambiente de teste
         Atividade atividade = Atividade.builder()
                 .nome("Testar salvar um")
-                .prazo(atividadeFactory.retornaPrazo(2016, 10, 10))
                 .projeto(projetoFactory.projeto())
                 .intervalo(intervaloFactory.intervalo())
                 .build();

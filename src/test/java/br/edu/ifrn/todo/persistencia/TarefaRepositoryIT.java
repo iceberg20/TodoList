@@ -54,7 +54,6 @@ public class TarefaRepositoryIT extends AbstractTestNGSpringContextTests {
         // cria o ambiente de teste
         Tarefa tarefa =  (Tarefa)Atividade.builder()
                 .nome("Testar salvar um")
-                .prazo(tarefaFactory.retornaPrazo(2016, 10, 10))
                 .projeto(projetoFactory.projeto())
                 .build();
         

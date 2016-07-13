@@ -71,10 +71,6 @@ public class Tarefa implements Serializable, Comparable<Tarefa> {
         int result = nome.compareTo(o.nome);
         if (result ==0)
         {
-            result = prazo.compareTo(o.prazo);
-        }
-        if (result ==0)
-        {
             result = projeto.compareTo(o.projeto);
         }
         return result;

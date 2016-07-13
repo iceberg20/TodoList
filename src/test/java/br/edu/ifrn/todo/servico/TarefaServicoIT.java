@@ -5,7 +5,6 @@ import br.edu.ifrn.todo.dominio.Atividade;
 import br.edu.ifrn.todo.dominio.Projeto;
 import br.edu.ifrn.todo.dominio.Tarefa;
 import br.edu.ifrn.todo.persistencia.ProjetoFactory;
-import java.util.Calendar;
 import javax.inject.Inject;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -32,14 +31,10 @@ public class TarefaServicoIT extends AbstractTestNGSpringContextTests {
         assertThat(tarefaServico.findAll()).isEmpty();
     }
     
-    private Tarefa tarefa(String nome, Projeto projeto){
-        Calendar prazo = Calendar.getInstance();
-        prazo.set(2016, 10, 10);
-        
+    private Tarefa tarefa(String nome, Projeto projeto){    
         Tarefa tarefa = (Tarefa)Atividade.builder()
                 .nome(nome)
-                .prazo(prazo.getTime())
-                .projeto(projetoFactory.projeto())
+                .projeto(projeto)
                 .build();
         
         return tarefa;
@@ -83,7 +78,7 @@ public class TarefaServicoIT extends AbstractTestNGSpringContextTests {
         tarefaServico.save(tarefa);
         
         // executa a operacao a ser testada
-        tarefaServico.transferir(p1, p2, tarefa);
+        tarefaServico.transferir(p2, tarefa);
         
         // verifica o efeito da execucao da operacao a ser testada
         assertThat(tarefa.getProjeto()).isEqualTo(p2);
