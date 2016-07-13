@@ -4,7 +4,9 @@ import br.edu.ifrn.todo.dominio.Atividade;
 import java.util.Calendar;
 import java.util.Date;
 import javax.inject.Inject;
+import javax.inject.Named;
 
+@Named
 public class AtividadeFactory {
     public final static String ATIVIDADE = "Terminar testes";
     public Date prazo = retornaPrazo(2016, 07, 07);
@@ -18,9 +20,9 @@ public class AtividadeFactory {
     @Inject
     private AtividadeRepository atividadeRepository;
     
-    private Date retornaPrazo(int ano, int mes, int dia){
+    public Date retornaPrazo(int ano, int mes, int dia){
         Calendar cal = Calendar.getInstance();
-        cal.set(ano, mes, dia);
+        cal.set(ano, mes, dia, 0, 0, 0);
         return cal.getTime();
     }
     

@@ -11,9 +11,11 @@ import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 /**
@@ -22,23 +24,20 @@ import lombok.ToString;
  */
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true, of = {"intervalo"})
 @Entity
 public class Atividade extends Tarefa{
     
-    @OneToOne(mappedBy = "atividade")
+    @OneToOne
     private Intervalo intervalo;
-    
-    @ManyToOne
-    @JoinColumn(name = "projetoId", nullable = false, insertable=false, updatable=false, foreignKey = @ForeignKey(name = "fk_atividade_projeto"))
-    private Projeto projeto;
   
     @Builder
     public Atividade(Long id, Date prazo, Date dataInicial, Projeto projeto, String nome, int prioridade, boolean concluida, Intervalo intervalo) {
         super(id, prazo, dataInicial, projeto, nome, prioridade, concluida);
         this.intervalo = intervalo;
-        this.projeto = projeto;
     } 
     
 }

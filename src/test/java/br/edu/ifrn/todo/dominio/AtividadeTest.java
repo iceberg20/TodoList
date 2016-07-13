@@ -36,8 +36,7 @@ public class AtividadeTest {
         nome2 = "Rodar testes";
         prazo = retornaPrazo(2016, 5, 21);
         projeto = retornaProjeto(nome1);
-        intervalo = Intervalo.builder().horaInicio(inicio).horaFim(fim)
-                .atividade(atividade).build();
+        intervalo = Intervalo.builder().horaInicio(inicio).horaFim(fim).build();
         atividade = retornaAtividade(nome1, prazo, projeto, intervalo);
         inicio = LocalTime.of(8, 0);
         fim = LocalTime.of(10, 0);    
@@ -45,8 +44,7 @@ public class AtividadeTest {
     }
     
     private Intervalo retornaIntervalo(LocalTime inicio, LocalTime fim){        
-        return Intervalo.builder().horaInicio(inicio).horaFim(fim)
-                .atividade(atividade).build();
+        return Intervalo.builder().horaInicio(inicio).horaFim(fim).build();
     }
     
     private LocalTime retornaTempo(int hora, int minuto){        
@@ -107,7 +105,7 @@ public class AtividadeTest {
         projeto = retornaProjeto(nome2);
         Atividade atividade4 = retornaAtividade(nome2, prazo, projeto, intervalo);
                 
-        atividades.add(atividade);
+        //atividades.add(atividade);
         atividades.add(atividade2);
         atividades.add(atividade3);
         atividades.add(atividade4);

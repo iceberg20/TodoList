@@ -13,11 +13,20 @@ public class UsuarioFactory {
     private UsuarioRepository usuarioRepository;
     
     public Usuario usuario() {
-        Usuario usuario = Usuario.builder()
-                .email(EMAIL)
+        return usuario(EMAIL);
+    }
+    
+    public Usuario usuario(String email) {
+        Usuario usuario = usuarioRepository.findByEmail(email);
+        
+        if (usuario == null){
+            usuario = Usuario.builder()
+                .email(email)
                 .nome(USUARIO)
                 .build();
-        usuarioRepository.save(usuario);
+            usuarioRepository.save(usuario);
+        }
+        
         return usuario;
     }
 }

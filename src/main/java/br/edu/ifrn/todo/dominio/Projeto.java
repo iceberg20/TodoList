@@ -6,7 +6,6 @@
 package br.edu.ifrn.todo.dominio;
 
 import java.io.Serializable;
-import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -21,7 +20,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import lombok.NoArgsConstructor;
 
 /**
  *
@@ -31,10 +30,10 @@ import javax.persistence.OneToMany;
 @Getter
 @Setter
 @AllArgsConstructor
-@EqualsAndHashCode(exclude = {"id", "tarefas", "atividades"})
+@NoArgsConstructor
+@EqualsAndHashCode(exclude = {"id"})
 @Builder
 @ToString
-
 @Entity
 @SequenceGenerator(sequenceName = "seq_projeto", name = "ID_SEQUENCE", allocationSize = 1)
 public class Projeto implements Serializable, Comparable<Projeto> {
@@ -46,14 +45,14 @@ public class Projeto implements Serializable, Comparable<Projeto> {
     private Long id;
     
     @ManyToOne
-    @JoinColumn(name = "usuarioId", nullable = false, insertable=false, updatable=false, foreignKey = @ForeignKey(name = "fk_projeto_usuario"))
+    @JoinColumn(name = "usuarioId",  nullable = false, foreignKey = @ForeignKey(name = "fk_projeto_usuario"))
     private Usuario usuario;
     
-    @OneToMany(mappedBy = "projeto")
-    private Set<Atividade> atividades;
+//    @OneToMany(mappedBy = "projeto")
+//    private Set<Atividade> atividades;
 
-    @OneToMany(mappedBy = "projeto")
-    private Set<Tarefa> tarefas;
+//    @OneToMany(mappedBy = "projeto")
+//    private Set<Tarefa> tarefas;
     
     private String nome;
 
@@ -65,6 +64,12 @@ public class Projeto implements Serializable, Comparable<Projeto> {
             result = usuario.compareTo(o.usuario);
         }
         return result;
+    }
+    
+    public void verificarAtributos() {
+//        if (tarefas instanceof Atividade ) {
+//            throw new IllegalArgumentException("Tarefas não podem ser atividades: " + tarefas);     
+//        }    
     }
     
 }

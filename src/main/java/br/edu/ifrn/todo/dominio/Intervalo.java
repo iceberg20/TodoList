@@ -8,17 +8,15 @@ package br.edu.ifrn.todo.dominio;
 import java.io.Serializable;
 import java.time.LocalTime;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -30,6 +28,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(exclude = {"id"})
 @Builder
 @ToString
@@ -45,9 +44,9 @@ public class Intervalo implements Serializable, Comparable<Intervalo> {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
     private Long id;
     
-    @OneToOne 
-    @JoinColumn(name="atividadeId", nullable = false, foreignKey = @ForeignKey(name = "fk_intervalo_atividade")) 
-    private Atividade atividade;
+//    @OneToOne 
+//    @JoinColumn(name="atividadeId", nullable = false, foreignKey = @ForeignKey(name = "fk_intervalo_atividade")) 
+//    private Atividade atividade;
   
     private LocalTime horaInicio;
     private LocalTime horaFim;
@@ -60,6 +59,15 @@ public class Intervalo implements Serializable, Comparable<Intervalo> {
             result = horaFim.compareTo(o.horaFim);
         }
         return result;
+    }
+    
+    public void verificarAtributos() {
+        if (horaInicio.equals(horaFim)) {
+            throw new IllegalArgumentException("O fim do intervalo não pode ser igual ao início: " + horaFim);
+        }
+        if (horaFim.isBefore(horaInicio)) {
+            throw new IllegalArgumentException("O fim do intervalo não pode ser anterior ao inicio: " + horaFim);     
+        }    
     }
     
 }

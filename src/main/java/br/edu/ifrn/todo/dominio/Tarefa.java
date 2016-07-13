@@ -20,9 +20,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -35,6 +35,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(exclude = {"id", "dataInicial", "prioridade", "concluida"})
 //@Data => Substitui os 4 acima, mas dá erro com getData
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -55,8 +56,9 @@ public class Tarefa implements Serializable, Comparable<Tarefa> {
    @Temporal(javax.persistence.TemporalType.DATE)
    private Date dataInicial;
    
+
    @ManyToOne
-   @JoinColumn(name = "projetoId", insertable=false, updatable=false, nullable = false, foreignKey = @ForeignKey(name = "fk_tarefa_projeto"))
+   @JoinColumn(name = "projetoId", nullable = false, foreignKey = @ForeignKey(name = "fk_tarefa_projeto"))
    private Projeto projeto;
    
    private String nome;
@@ -67,10 +69,6 @@ public class Tarefa implements Serializable, Comparable<Tarefa> {
     @Override
     public int compareTo(Tarefa o) {
         int result = nome.compareTo(o.nome);
-        if (result ==0)
-        {
-            result = prazo.compareTo(o.prazo);
-        }
         if (result ==0)
         {
             result = projeto.compareTo(o.projeto);
