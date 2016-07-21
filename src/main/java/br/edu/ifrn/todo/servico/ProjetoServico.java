@@ -16,14 +16,6 @@ public class ProjetoServico extends AbstratoServico<Projeto, Long> {
         this.projetoRepository = projetoRepository;
     }
     
-    public int tarefasAbertas(Projeto projeto){
-        return projetoRepository.tarefasAbertas(projeto);
-    }
-    
-    public int tarefasFechadas(Projeto projeto){
-        return projetoRepository.tarefasFechadas(projeto);
-    } 
-    
     @Override
     @Transactional
     public Projeto save(Projeto objeto) {
