@@ -21,4 +21,4 @@ spring:
             naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
 
 server:
-   port: 9000
+   port: 8000
