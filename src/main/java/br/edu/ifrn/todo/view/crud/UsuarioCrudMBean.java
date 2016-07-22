@@ -12,4 +12,5 @@ public class UsuarioCrudMBean extends CrudMBean<Usuario, Long> {
 	protected Usuario createBean() {
 		return Usuario.builder().build();
 	}
+        
 }

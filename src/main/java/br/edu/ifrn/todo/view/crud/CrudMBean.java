@@ -363,7 +363,7 @@ public abstract class CrudMBean<T extends Object, ID extends Serializable>
 
 	public boolean isCheckBeforeDelete(T bean)
 	{
-		return false;
+		return true;
 	}
 
 	public boolean alarmOnDelete(T bean)
