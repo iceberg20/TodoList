@@ -17,6 +17,6 @@ public class TarefaCrudMBean extends CrudMBean<Tarefa, Long> {
         
         @Override
 	protected Tarefa createBean() {
-		return Atividade.builder().build();
+		return (Tarefa)Atividade.builder().build();
 	}
 }

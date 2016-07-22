@@ -19,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -44,13 +45,13 @@ public class Tarefa implements Serializable, Comparable<Tarefa> {
    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
    private Long id;
    
-   @Temporal(javax.persistence.TemporalType.DATE)
+   @Temporal(TemporalType.TIMESTAMP)
    private Date prazo;
    
-   @Temporal(javax.persistence.TemporalType.DATE)
+   
+   @Temporal(TemporalType.TIMESTAMP)
    private Date dataInicial;
    
-
    @ManyToOne
    @JoinColumn(name = "projetoId", nullable = false, foreignKey = @ForeignKey(name = "fk_tarefa_projeto"))
    private Projeto projeto;
