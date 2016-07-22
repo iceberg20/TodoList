@@ -147,7 +147,8 @@ h4 {
 #footer .copyright {
     float: left;
     padding-top: 10px;
-    text-decoration: underline !important;
+    text-decoration: none !important;
+    text-align: center;
 }
 
 /* classe para deixar texto com fonte vermelha (registros inativos) */

@@ -12,20 +12,26 @@
                 <p:column headerText="Nome" sortBy="#{bean.nome}" filterBy="#{bean.nome}" >
                     <h:outputText value="#{bean.nome}" />
                 </p:column>
+                <p:column headerText="Usuário" sortBy="#{bean.usuario.nome}" filterBy="#{bean.usuario.nome}" >
+                    <h:outputText value="#{bean.usuario.nome}" />
+                </p:column>
             </ui:define>
             <ui:define name="detail">
                 <h:panelGrid columns="2" cellpadding="3">
-                    <c:text readonly="true" value="#{projetoCrudMBean.bean.nome}" label="Título" />
+                    <c:text readonly="true" value="#{projetoCrudMBean.bean.nome}" label="Nome" />
+                    <c:text readonly="true" value="#{projetoCrudMBean.bean.usuario.nome}" label="Usuário" />
                 </h:panelGrid>
             </ui:define>
             <ui:define name="insert">
                 <h:panelGrid columns="2" cellpadding="3">
-                    <c:text id="title" required="true" value="#{projetoCrudMBean.bean.nome}" label="Título" />
+                    <c:text id="insertNome" required="true" value="#{projetoCrudMBean.bean.nome}" label="Nome" />
+                    <c:select id="insertUsuario" required="true" value="#{projetoCrudMBean.bean.usuario}" label="Usuário" options="#{usuarioOptions}"/>
                 </h:panelGrid>
             </ui:define>
             <ui:define name="update">
                 <h:panelGrid columns="2" cellpadding="3">
-                    <c:text required="true" value="#{projetoCrudMBean.bean.nome}" label="Título" />
+                    <c:text required="true" value="#{projetoCrudMBean.bean.nome}" label="Nome" />
+                    <c:select required="true" value="#{projetoCrudMBean.bean.usuario}" label="Usuário" options="#{usuarioOptions}"/>
                 </h:panelGrid>
             </ui:define>
         </c:crud>

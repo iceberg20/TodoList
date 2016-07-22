@@ -63,8 +63,7 @@ public abstract class CrudMBean<T extends Object, ID extends Serializable>
 	private AbstratoServico<T, ID> service;
 
 	@Inject
-	public void setService(AbstratoServico<T, ID> service)
-	{
+	public void setService(AbstratoServico<T, ID> service) {
 		this.service = service;
 	}
 
@@ -74,22 +73,17 @@ public abstract class CrudMBean<T extends Object, ID extends Serializable>
 	@Setter(AccessLevel.NONE)
 	private List<T> beanList = null;
 
-	public CrudMBean()
-	{
+	public CrudMBean() {
 		setVisualizationMode(LIST);
 	}
 
-	public final List<T> getBeanList()
-	{
-		try
-		{
-			if (this.beanList == null)
-			{
+	public final List<T> getBeanList() {
+		try {
+			if (this.beanList == null) {
 				this.beanList = find();
 			}
 		}
-		catch (Exception e)
-		{
+		catch (Exception e) {
 			tratarException(ID_MESSAGES_CRUD, "Pesquisa", e);
 		}
 		return this.beanList;
@@ -113,32 +107,27 @@ public abstract class CrudMBean<T extends Object, ID extends Serializable>
 	@Getter
 	private String keyValue;
 
-	public List<T> find()
-	{
+	public List<T> find() {
 		return toList(this.service.findAll());
 	}
 
-	public void startFindAction()
-	{
+	public void startFindAction() {
 		setVisualizationMode(LIST);
 
 		this.beanList = null;
 	}
 
-	public final void findAction()
-	{
+	public final void findAction() {
 		this.beanList = null;
 	}
 
 	protected abstract T createBean();
 
-	protected T init(T result)
-	{
+	protected T init(T result) {
 		return result;
 	}
 
-	private T createAndInitBean()
-	{
+	private T createAndInitBean() {
 		T result = createBean();
 
 		result = init(result);
@@ -146,8 +135,7 @@ public abstract class CrudMBean<T extends Object, ID extends Serializable>
 		return result;
 	}
 
-	public final String getManagedBeanName()
-	{
+	public final String getManagedBeanName() {
 		String result = getClass().getName();
 		result = result.substring(result.lastIndexOf('.') + 1);
 		result = result.substring(0, 1).toLowerCase(Locale.ITALIAN)
@@ -155,69 +143,51 @@ public abstract class CrudMBean<T extends Object, ID extends Serializable>
 		return result;
 	}
 
-	protected String cancelInsertUpdateAction()
-	{
+	protected String cancelInsertUpdateAction() {
 		startFindAction();
 
 		return null;
 	}
 
-	public String cancelInsertAction()
-	{
+	public String cancelInsertAction() {
 		return cancelInsertUpdateAction();
 	}
 
-	public String cancelUpdateAction()
-	{
+	public String cancelUpdateAction() {
 		return cancelInsertUpdateAction();
 	}
 
-	public void startInsertAction()
-	{
+	public void startInsertAction() {
 		setBean(createAndInitBean());
 
 		setVisualizationMode(INSERT);
 	}
 
-	protected void insert(T bean)
-	{
-		try
-		{
-			this.service.save(bean);
-		}
-		catch (Exception e)
-		{
-			this.tratarException("??", "insert", e);
-		}
+	protected void insert(T bean) {
+		this.service.save(bean);
 	}
 
-	protected T processBeforeInsertUpdate(T bean)
-	{
+	protected T processBeforeInsertUpdate(T bean) {
 		return bean;
 	}
 
-	protected T processBeforeInsert(T bean)
-	{
+	protected T processBeforeInsert(T bean) {
 		return processBeforeInsertUpdate(bean);
 	}
 
-	protected String processAfterInsert()
-	{
+	protected String processAfterInsert() {
 		processVisualizationMode(getVisualizationModeAfterInsert());
 		return null;
 	}
 
-	public boolean isCheckStartInsert(T bean)
-	{
+	public boolean isCheckStartInsert(T bean) {
 		return true;
 	}
 
-	public final String insertAction(String visualizationMode)
-	{
+	public final String insertAction(String visualizationMode) {
 		String result = null;
 
-		try
-		{
+		try {
 			setVisualizationModeAfterInsert(visualizationMode);
 
 			T beanToInsert = processBeforeInsert(getBean());
@@ -228,65 +198,48 @@ public abstract class CrudMBean<T extends Object, ID extends Serializable>
 
 			result = processAfterInsert();
 		}
-		catch (Exception e)
-		{
+		catch (Exception e) {
 			tratarException(ID_MESSAGES_CRUD, "Cadastro", e);
 		}
 
 		return result;
 	}
 
-	protected T getDetailBean(T bean)
-	{
+	protected T getDetailBean(T bean) {
 		return bean;
 	}
 
-	protected T getUpdateBean(T bean)
-	{
+	protected T getUpdateBean(T bean) {
 		return bean;
 	}
 
-	public void startUpdateAction()
-	{
+	public void startUpdateAction() {
 		setBean(getUpdateBean(getBean()));
 
 		setVisualizationMode(UPDATE);
 	}
 
-	protected void update(T bean)
-	{
-		try
-		{
-			this.service.save(bean);
-		}
-		catch (Exception e)
-		{
-			this.tratarException("??", "update", e);
-		}
+	protected void update(T bean) {
+		this.service.save(bean);
 	}
 
-	protected T processBeforeUpdate(T bean)
-	{
+	protected T processBeforeUpdate(T bean) {
 		return processBeforeInsertUpdate(bean);
 	}
 
-	protected String processAfterUpdate()
-	{
+	protected String processAfterUpdate() {
 		processVisualizationMode(getVisualizationModeAfterUpdate());
 
 		return null;
 	}
 
-	public boolean isCheckStartUpdate(T bean)
-	{
+	public boolean isCheckStartUpdate(T bean) {
 		return true;
 	}
 
-	public final String updateAction(String visualizationMode)
-	{
+	public final String updateAction(String visualizationMode) {
 		String result = null;
-		try
-		{
+		try {
 			setVisualizationModeAfterUpdate(visualizationMode);
 
 			// recupera o bean para atualizar
@@ -299,20 +252,16 @@ public abstract class CrudMBean<T extends Object, ID extends Serializable>
 			update(updateBean);
 
 			// atualizando a lista de beans
-			if (this.beanList != null)
-			{
+			if (this.beanList != null) {
 				int indexOfBean = -1;
 
-				for (int counter = 0; counter < this.beanList.size(); counter++)
-				{
-					if (this.beanList.get(counter).equals(updateBean))
-					{
+				for (int counter = 0; counter < this.beanList.size(); counter++) {
+					if (this.beanList.get(counter).equals(updateBean)) {
 						indexOfBean = counter;
 						break;
 					}
 				}
-				if (indexOfBean > -1)
-				{
+				if (indexOfBean > -1) {
 					List<T> newBeanList = new ArrayList<T>();
 					newBeanList.addAll(this.beanList.subList(0, indexOfBean));
 					newBeanList.add(updateBean);
@@ -326,69 +275,58 @@ public abstract class CrudMBean<T extends Object, ID extends Serializable>
 
 			result = processAfterUpdate();
 		}
-		catch (Exception e)
-		{
+		catch (Exception e) {
 			tratarException(ID_MESSAGES_CRUD, "Atualização", e);
 		}
 		return result;
 	}
 
-	public void startDetailAction()
-	{
+	public void startDetailAction() {
 		setVisualizationMode(DETAIL);
 
 		T newBean = getDetailBean(getBean());
 		setBean(newBean);
 	}
 
-	public boolean isDetailable(T bean)
-	{
+	public boolean isDetailable(T bean) {
 		return true;
 	}
 
-	public final void detailAction()
-	{
+	public final void detailAction() {
 		setVisualizationMode(LIST);
 	}
 
-	protected void delete(T bean)
-	{
+	protected void delete(T bean) {
 		this.service.delete(bean);
 	}
 
-	protected T processBeforeDelete(T bean)
-	{
+	protected T processBeforeDelete(T bean) {
 		return bean;
 	}
 
-	public boolean isCheckBeforeDelete(T bean)
-	{
+	public boolean isCheckBeforeDelete(T bean) {
+		return false;
+	}
+
+	public boolean alarmOnDelete(T bean) {
 		return true;
 	}
 
-	public boolean alarmOnDelete(T bean)
-	{
-		return true;
-	}
-
-	protected void processAfterDelete()
-	{
+	protected void processAfterDelete() {
 		processVisualizationMode(getVisualizationModeAfterDelete());
 	}
 
-	protected final void processVisualizationMode(String visualizationModeParameter)
-	{
-		if (visualizationModeParameter.equals(LIST))
-		{
+	protected final void processVisualizationMode(String visualizationModeParameter) {
+		if (visualizationModeParameter.equals(LIST)) {
 			startFindAction();
-		} else if (visualizationModeParameter.equals(DETAIL))
-		{
+		}
+		else if (visualizationModeParameter.equals(DETAIL)) {
 			startDetailAction();
-		} else if (visualizationModeParameter.equals(INSERT))
-		{
+		}
+		else if (visualizationModeParameter.equals(INSERT)) {
 			startInsertAction();
-		} else if (visualizationModeParameter.equals(UPDATE))
-		{
+		}
+		else if (visualizationModeParameter.equals(UPDATE)) {
 			startUpdateAction();
 		}
 
@@ -399,14 +337,11 @@ public abstract class CrudMBean<T extends Object, ID extends Serializable>
 		requestContext.scrollTo("messages");
 	}
 
-	protected void processCustomVisualizationMode(String visualizationModeParameter)
-	{
+	protected void processCustomVisualizationMode(String visualizationModeParameter) {
 	}
 
-	public final void deleteAction(String visualizationMode)
-	{
-		try
-		{
+	public final void deleteAction(String visualizationMode) {
+		try {
 			setVisualizationModeAfterDelete(visualizationMode);
 
 			// recupera o bean para remover
@@ -423,24 +358,20 @@ public abstract class CrudMBean<T extends Object, ID extends Serializable>
 
 			processAfterDelete();
 		}
-		catch (Exception e)
-		{
+		catch (Exception e) {
 			tratarException(ID_MESSAGES_CRUD, "Remoção", e);
 		}
 	}
 
-	public String deleteAlertMessage(T bean)
-	{
+	public String deleteAlertMessage(T bean) {
 		return "Confirma remoção?";
 	}
 
-	public boolean isDisabledUpdateButton()
-	{
+	public boolean isDisabledUpdateButton() {
 		return false;
 	}
 
-	public boolean isDisabledInsertButton()
-	{
+	public boolean isDisabledInsertButton() {
 		return false;
 	}
 
