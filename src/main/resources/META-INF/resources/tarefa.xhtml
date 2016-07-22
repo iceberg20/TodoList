@@ -7,7 +7,7 @@
                 xmlns:c="http://ifrn.edu.br/conta"
                 template="layout/template.xhtml">
     <ui:define name="content">
-        <c:crud title="Usuários" managedBean="#{usuarioCrudMBean}" showDeleteActionLink="true">
+        <c:crud title="Tarefas" managedBean="#{tarefaCrudMBean}" showDeleteActionLink="true">
             <ui:define name="listColumns">
                 <p:column headerText="Nome" sortBy="#{bean.nome}" filterBy="#{bean.nome}" >
                     <h:outputText value="#{bean.nome}" />
@@ -15,17 +15,17 @@
             </ui:define>
             <ui:define name="detail">
                 <h:panelGrid columns="2" cellpadding="3">
-                    <c:text readonly="true" value="#{usuarioCrudMBean.bean.nome}" label="Título" />
+                    <c:text readonly="true" value="#{tarefaCrudMBean.bean.nome}" label="Título" />
                 </h:panelGrid>
             </ui:define>
             <ui:define name="insert">
                 <h:panelGrid columns="2" cellpadding="3">
-                    <c:text id="title" required="true" value="#{usuarioCrudMBean.bean.nome}" label="Título" />
+                    <c:text id="title" required="true" value="#{tarefaCrudMBean.bean.nome}" label="Título" />
                 </h:panelGrid>
             </ui:define>
             <ui:define name="update">
                 <h:panelGrid columns="2" cellpadding="3">
-                    <c:text required="true" value="#{usuarioCrudMBean.bean.nome}" label="Título" />
+                    <c:text required="true" value="#{tarefaCrudMBean.bean.nome}" label="Título" />
                 </h:panelGrid>
             </ui:define>
         </c:crud>
