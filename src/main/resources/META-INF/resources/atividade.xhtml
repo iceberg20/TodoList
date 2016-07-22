@@ -24,6 +24,9 @@
                 <p:column headerText="Concluido" sortBy="#{bean.concluida}" >
                      <h:outputText value="#{bean.concluida}" />
                 </p:column>
+                 <p:column headerText="Intervalo" sortBy="#{bean.intervalo}" >
+                     <h:outputText value="#{bean.intervalo.descricao()}" />
+                </p:column>
                 
             </ui:define>
             
@@ -32,27 +35,30 @@
                     <c:text readonly="true" value="#{atividadeCrudMBean.bean.nome}" label="Nome" />
                     <c:text readonly="true" value="#{atividadeCrudMBean.bean.prioridade}" label="Prioridade" />
                     <c:text readonly="true" value="#{atividadeCrudMBean.bean.projeto.nome}" label="Projeto" />
-                    <c:date pattern="dd/MM/yyyy" readonly="true" value="#{atividadeCrudMBean.bean.data}" label="Prazo"/>
+                    <c:date pattern="dd/MM/yyyy" readonly="true" value="#{atividadeCrudMBean.bean.prazo}" label="Prazo"/>
                     <c:text readonly="true" value="#{atividadeCrudMBean.bean.concluida}" label="Concluido" />
+                    <c:text readonly="true" value="#{atividadeCrudMBean.bean.intervalo}" label="Intervalo" />
                 </h:panelGrid>
             </ui:define>
             
             <ui:define name="insert">
                 <h:panelGrid columns="2" cellpadding="3">
                     <c:text id="insertNome" required="true" value="#{atividadeCrudMBean.bean.nome}" label="Nome" />
-                    <c:text id="insertPrioridade" required="true" value="#{atividadeCrudMBean.bean.prioridade}" label="Prioridade" />
+                    <c:text id="insertPrioridade" required="false" value="#{atividadeCrudMBean.bean.prioridade}" label="Prioridade" />
                     <c:select id="insertProjeto" required="true" value="#{atividadeCrudMBean.bean.projeto}" label="Projeto" options="#{projetoOptions}"/>
                     <c:date id="insertPrazo" required="true" pattern="dd/MM/yyyy" value="#{atividadeCrudMBean.bean.prazo}" label="Prazo"/>
+                    <c:select id="insertIntervalo" required="false" value="#{atividadeCrudMBean.bean.intervalo}" label="Intervalo" options="#{intervaloOptions}"/>
                 </h:panelGrid>
             </ui:define>
             
             <ui:define name="update">
                 <h:panelGrid columns="2" cellpadding="3">
                     <c:text required="true" value="#{atividadeCrudMBean.bean.nome}" label="Nome" />
-                    <c:text required="true" value="#{atividadeCrudMBean.bean.prioridade}" label="Prioridade" />
+                    <c:text required="false" value="#{atividadeCrudMBean.bean.prioridade}" label="Prioridade" />
                     <c:select required="true" value="#{atividadeCrudMBean.bean.projeto}" label="Projeto" options="#{projetoOptions}"/>
                     <c:date required="true" pattern="dd/MM/yyyy" value="#{atividadeCrudMBean.bean.prazo}" label="Prazo"/>
                     <c:text id="updateConcluido" required="true" value="#{atividadeCrudMBean.bean.concluida}" label="Concluido" />
+                    <c:select required="false" value="#{atividadeCrudMBean.bean.intervalo}" label="Intervalo" options="#{intervaloOptions}"/>
                 </h:panelGrid>
             </ui:define>
         </c:crud>

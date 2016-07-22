@@ -14,6 +14,9 @@ spring:
         test-on-borrow: true
         validationQuery: SELECT 1
     jpa:
+        show-sql: true
+        show_sql: true
+        
         hibernate:
             ddl-auto: update
             naming-strategy: org.hibernate.cfg.EJB3NamingStrategy

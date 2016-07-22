@@ -13,16 +13,17 @@
                     <h:outputText value="#{bean.id}" />
                 </p:column>
                 <p:column headerText="Início" sortBy="#{bean.horaInicio}" >
-                    <c:date pattern="dd/MM/yyyy HH:mm:ss" readonly="true" value="#{bean.horaInicio}" />
+                    <c:date id="listaInicio" pattern="dd/MM/yyyy HH:mm:ss" readonly="true" value="#{bean.horaInicio}" />
                 </p:column>
                 <p:column headerText="Fim" sortBy="#{bean.horaFim}" >
-                    <c:date pattern="dd/MM/yyyy HH:mm:ss" readonly="true" value="#{bean.horaFim}" />
+                    <c:date id="listaFim" pattern="dd/MM/yyyy HH:mm:ss" readonly="true" value="#{bean.horaFim}" />
                 </p:column>
                 
             </ui:define>
             
             <ui:define name="detail">
                 <h:panelGrid columns="2" cellpadding="3">
+                    <c:text readonly="true" value="#{intervaloCrudMBean.bean.id}" label="ID" />
                     <c:date pattern="dd/MM/yyyy HH:mm:ss" readonly="true" value="#{intervaloCrudMBean.bean.horaInicio}" label="Início"/>
                     <c:date pattern="dd/MM/yyyy HH:mm:ss" readonly="true" value="#{intervaloCrudMBean.bean.horaFim}" label="Fim"/>
                 </h:panelGrid>

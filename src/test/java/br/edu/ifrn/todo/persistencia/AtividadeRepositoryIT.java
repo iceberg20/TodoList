@@ -65,6 +65,6 @@ public class AtividadeRepositoryIT extends AbstractTestNGSpringContextTests {
         // verifica se a atividade foi adicionada
         //assertThat(atividadeRepository.findAll()).hasSize(1); 
         //assertThat(atividadeRepository.findAll()).contains(atividade);
-        assertThat(atividadeRepository.findAll().iterator().next()).isEqualTo(atividade);
+        assertThat(atividadeRepository.findAll().iterator().next().getId()).isEqualTo(atividade.getId());
     }
 }

@@ -46,14 +46,14 @@ public class IntervaloRepositoryIT extends AbstractTestNGSpringContextTests {
     public void salvarUm () {
         // cria o ambiente de teste
         Intervalo intervalo = Intervalo.builder()
-                .horaInicio(LocalTime.of(9, 9))
-                .horaFim(LocalTime.of(10, 10))
+                .horaInicio(intervaloFactory.retornarData(2016, 9, 9))
+                .horaFim(intervaloFactory.retornarData(2016, 10, 10))
                 .build();
         
         // executa a operacao a ser testada
         intervaloRepository.save(intervalo);
         
         // verifica o efeito da execucao da operacao a ser testada
-        assertThat(intervaloRepository.findAll().iterator().next()).isEqualTo(intervalo);
+        assertThat(intervaloRepository.findAll().iterator().next().getId()).isEqualTo(intervalo.getId());
     }
 }
