@@ -6,12 +6,14 @@
 package br.edu.ifrn.todo.dominio;
 
 import java.io.Serializable;
-import java.time.LocalTime;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -47,9 +49,12 @@ public class Intervalo implements Serializable, Comparable<Intervalo> {
 //    @OneToOne 
 //    @JoinColumn(name="atividadeId", nullable = false, foreignKey = @ForeignKey(name = "fk_intervalo_atividade")) 
 //    private Atividade atividade;
-  
-    private LocalTime horaInicio;
-    private LocalTime horaFim;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date horaInicio;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date horaFim;
 
     @Override
     public int compareTo(Intervalo o) {
@@ -65,9 +70,14 @@ public class Intervalo implements Serializable, Comparable<Intervalo> {
         if (horaInicio.equals(horaFim)) {
             throw new IllegalArgumentException("O fim do intervalo não pode ser igual ao início: " + horaFim);
         }
-        if (horaFim.isBefore(horaInicio)) {
+        if (horaFim.before(horaInicio)) {
             throw new IllegalArgumentException("O fim do intervalo não pode ser anterior ao inicio: " + horaFim);     
         }    
+    }
+    
+    public String descricao(){
+        String saida = horaInicio.toString() + " - " + horaFim.toString();
+        return saida;
     }
     
 }

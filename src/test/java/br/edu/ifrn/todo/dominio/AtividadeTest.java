@@ -26,32 +26,28 @@ public class AtividadeTest {
     private String nome2;
     private Date prazo;
     private Projeto projeto;
-    private LocalTime inicio;
-    private LocalTime fim;
+    private Date inicio;
+    private Date fim;
     private Intervalo intervalo;
     
     @BeforeMethod
     public void inicializacao(){
         nome1 = "Testar classes";
         nome2 = "Rodar testes";
-        prazo = retornaPrazo(2016, 5, 21);
+        prazo = retornaData(2016, 5, 21);
         projeto = retornaProjeto(nome1);
         intervalo = Intervalo.builder().horaInicio(inicio).horaFim(fim).build();
         atividade = retornaAtividade(nome1, prazo, projeto, intervalo);
-        inicio = LocalTime.of(8, 0);
-        fim = LocalTime.of(10, 0);    
+        inicio = retornaData(2016, 10, 10);
+        fim = retornaData(2016, 10, 16); 
         
     }
     
-    private Intervalo retornaIntervalo(LocalTime inicio, LocalTime fim){        
+    private Intervalo retornaIntervalo(Date inicio, Date fim){        
         return Intervalo.builder().horaInicio(inicio).horaFim(fim).build();
     }
     
-    private LocalTime retornaTempo(int hora, int minuto){        
-        return LocalTime.of(hora, minuto);
-    }
-    
-    private Date retornaPrazo(int ano, int mes, int dia){
+    private Date retornaData(int ano, int mes, int dia){
         Calendar cal = Calendar.getInstance();
         cal.set(ano, mes, dia);
         return cal.getTime();
@@ -72,27 +68,27 @@ public class AtividadeTest {
     }
     
     public void nomesPrazosProjetosIguaisIntervalosDiferentes() {
-        intervalo = retornaIntervalo(inicio, retornaTempo(11, 0));
+        intervalo = retornaIntervalo(inicio, retornaData(2016, 12, 12));
         assertThat(retornaAtividade(nome1, prazo, projeto, intervalo)).isNotEqualTo(atividade);
     }
     
     public void nomesPrazosIguaisProjetosIntervalosDiferentes() {
-        intervalo = retornaIntervalo(inicio, retornaTempo(11, 0));
+        intervalo = retornaIntervalo(inicio, retornaData(2016, 12, 12));
         projeto = retornaProjeto(nome2);
         assertThat(retornaAtividade(nome1, prazo, projeto, intervalo)).isNotEqualTo(atividade);
     }
     
     public void nomesIguaisPrazosProjetosIntervalosDiferentes() {
-        intervalo = retornaIntervalo(inicio, retornaTempo(11, 0));
+        intervalo = retornaIntervalo(inicio, retornaData(2016, 12, 12));
         projeto = retornaProjeto(nome2);
-        prazo = retornaPrazo(2016, 5, 22);
+        prazo = retornaData(2016, 5, 22);
         assertThat(retornaAtividade(nome1, prazo, projeto, intervalo)).isNotEqualTo(atividade);
     }
     
     public void nomesPrazosProjetosIntervalosDiferentes() {
-        intervalo = retornaIntervalo(inicio, retornaTempo(11, 0));
+        intervalo = retornaIntervalo(inicio, retornaData(2016, 12, 12));
         projeto = retornaProjeto(nome2);
-        prazo = retornaPrazo(2016, 5, 22);
+        prazo = retornaData(2016, 5, 22);
         assertThat(retornaAtividade(nome2, prazo, projeto, intervalo)).isNotEqualTo(atividade);
     }
 
@@ -100,7 +96,7 @@ public class AtividadeTest {
         Set<Atividade> atividades = new TreeSet<>();
         
         Atividade atividade2 = retornaAtividade(nome2, prazo, projeto, intervalo);
-        prazo = retornaPrazo(2016, 5, 2);
+        prazo = retornaData(2016, 5, 2);
         Atividade atividade3 = retornaAtividade(nome2, prazo, projeto, intervalo);
         projeto = retornaProjeto(nome2);
         Atividade atividade4 = retornaAtividade(nome2, prazo, projeto, intervalo);

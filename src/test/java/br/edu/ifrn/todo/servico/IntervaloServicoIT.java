@@ -3,6 +3,8 @@ package br.edu.ifrn.todo.servico;
 import br.edu.ifrn.todo.TodoApplication;
 import br.edu.ifrn.todo.dominio.Intervalo;
 import java.time.LocalTime;
+import java.util.Calendar;
+import java.util.Date;
 import javax.inject.Inject;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -16,11 +18,17 @@ import org.testng.annotations.Test;
 @Test(groups = "intervalo")
 public class IntervaloServicoIT extends AbstractTestNGSpringContextTests {
     
-    public final static LocalTime inicio = LocalTime.of(9, 9);
-    public final static LocalTime fim = LocalTime.of(10, 10);
+    public final Date inicio = retornarData(2016, 10, 11);
+    public final Date fim = retornarData(2016, 10, 12);
     
     @Inject
     private IntervaloServico intervaloServico;
+    
+    private Date retornarData(int ano, int mes, int dia){
+        Calendar cal = Calendar.getInstance();
+        cal.set(ano, mes, dia);
+        return cal.getTime();
+    }
     
     @BeforeMethod
     void deletarTodos()
@@ -44,7 +52,7 @@ public class IntervaloServicoIT extends AbstractTestNGSpringContextTests {
         intervaloServico.save(intervalo);
         
         // verifica o efeito da execucao da operacao a ser testada
-        assertThat(intervaloServico.findAll().iterator().next()).isEqualTo(intervalo);
+        assertThat(intervaloServico.findAll().iterator().next().getId()).isEqualTo(intervalo.getId());
     }
    
     public void deletarUm () {
