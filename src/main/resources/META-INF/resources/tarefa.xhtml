@@ -12,21 +12,48 @@
                 <p:column headerText="Nome" sortBy="#{bean.nome}" filterBy="#{bean.nome}" >
                     <h:outputText value="#{bean.nome}" />
                 </p:column>
+                <p:column headerText="Prioridade" sortBy="#{bean.prioridade}" filterBy="#{bean.prioridade}" >
+                    <h:outputText value="#{bean.prioridade}" />
+                </p:column>
+                <p:column headerText="Projeto" sortBy="#{bean.projeto.nome}" filterBy="#{bean.projeto.nome}" >
+                    <h:outputText value="#{bean.projeto.nome}" />
+                </p:column>
+                <p:column headerText="Prazo" sortBy="#{bean.prazo}" >
+                    <c:date pattern="dd/MM/yyyy HH:mm:ss" readonly="true" value="#{bean.prazo}" />
+                </p:column>
+                <p:column headerText="Concluido" sortBy="#{bean.concluida}" filterBy="#{bean.concluida}" >
+                    <h:outputText value="#{bean.concluida}" />
+                </p:column>
             </ui:define>
+            
             <ui:define name="detail">
                 <h:panelGrid columns="2" cellpadding="3">
-                    <c:text readonly="true" value="#{tarefaCrudMBean.bean.nome}" label="Título" />
+                    <c:text readonly="true" value="#{tarefaCrudMBean.bean.nome}" label="Nome" />
+                    <c:text readonly="true" value="#{tarefaCrudMBean.bean.prioridade}" label="Prioridade" />
+                    <c:text readonly="true" value="#{tarefaCrudMBean.bean.projeto.nome}" label="Projeto" />
+                    <c:date pattern="dd/MM/yyyy HH:mm:ss" readonly="true" value="#{tarefaCrudMBean.bean.data}" label="Prazo"/>
+                    <c:text readonly="true" value="#{tarefaCrudMBean.bean.concluida}" label="Concluido" />
                 </h:panelGrid>
             </ui:define>
+            
             <ui:define name="insert">
                 <h:panelGrid columns="2" cellpadding="3">
-                    <c:text id="title" required="true" value="#{tarefaCrudMBean.bean.nome}" label="Título" />
+                    <c:text id="insertNome" required="true" value="#{tarefaCrudMBean.bean.nome}" label="Nome" />
+                    <c:text id="insertPrioridade" required="true" value="#{tarefaCrudMBean.bean.prioridade}" label="Prioridade" />
+                    <c:select id="insertProjeto" required="true" value="#{projetoCrudMBean.bean.projeto}" label="Projeto" options="#{projetoOptions}"/>
+                    <c:date required="true" pattern="dd/MM/yyyy HH:mm:ss" value="#{tarefaCrudMBean.bean.prazo}" label="Prazo"/>
+                    <c:text id="insertConcluido" required="true" value="#{tarefaCrudMBean.bean.concluida}" label="Concluido" />
                 </h:panelGrid>
             </ui:define>
+            
             <ui:define name="update">
                 <h:panelGrid columns="2" cellpadding="3">
-                    <c:text required="true" value="#{tarefaCrudMBean.bean.nome}" label="Título" />
-                </h:panelGrid>
+                    <c:text required="true" value="#{tarefaCrudMBean.bean.nome}" label="Nome" />
+                    <c:text required="true" value="#{tarefaCrudMBean.bean.prioridade}" label="Prioridade" />
+                    <c:select required="true" value="#{projetoCrudMBean.bean.projeto}" label="Projeto" options="#{projetoOptions}"/>
+                    <c:date id="updateDate" required="true" pattern="dd/MM/yyyy HH:mm:ss" value="#{tarefaCrudMBean.bean.prazo}" label="Prazo"/>
+                    <c:text required="true" value="#{tarefaCrudMBean.bean.concluida}" label="Concluido" />
+           </h:panelGrid>
             </ui:define>
         </c:crud>
     </ui:define>

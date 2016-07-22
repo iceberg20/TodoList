@@ -26,12 +26,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
-/**
- *
- * @author italo
- */
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -76,7 +70,7 @@ public class Tarefa implements Serializable, Comparable<Tarefa> {
         return result;
     }
     
-    public void concluida(){
+    public void concluir(){
         this.concluida = true;
     }
     
