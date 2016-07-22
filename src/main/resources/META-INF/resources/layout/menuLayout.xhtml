@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:b="http://bootsfaces.net/ui"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-                >
-
-    <h:form id="menuForm">
-        <div id="menu"
-             class="ui-widget ui-widget ui-widget-content ui-corner-all">
-            <ui:include src="menu.xhtml" />
-        </div>
-    </h:form>
-
+                xmlns:p="http://primefaces.org/ui">
+        
+    <b:navBar brand="ToDo" brandHref="#" inverse="true">
+    <b:navbarLinks>
+        <b:navLink value="Usuário" href="/usuario.jsf"></b:navLink>
+        <b:navLink value="Projeto" href="/projeto.jsf"></b:navLink>
+        <b:navLink value="Tarefa" href="/tarefa.jsf"></b:navLink>
+        <b:navLink value="Atividade" href="/atividade.jsf"></b:navLink>
+        <b:navLink value="Intervalo" href="/intervalo"></b:navLink>
+    </b:navbarLinks>
+    </b:navBar>
 </ui:composition>

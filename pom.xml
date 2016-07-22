@@ -93,6 +93,12 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>net.bootsfaces</groupId>
+            <artifactId>bootsfaces</artifactId>
+            <version>0.9.1</version>
+            <scope>compile</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.hsqldb</groupId>
@@ -183,7 +189,7 @@
             <artifactId>testng</artifactId>
             <version>6.9.10</version>
             <type>jar</type>
-        </dependency>
+        </dependency>     
         
     </dependencies>
 
