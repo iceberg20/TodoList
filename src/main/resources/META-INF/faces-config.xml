@@ -13,6 +13,7 @@
     </ordering>
 
     <application>
+        <resource-handler>org.omnifaces.resourcehandler.CombinedResourceHandler</resource-handler>
         <locale-config>
             <default-locale>pt_BR</default-locale>
         </locale-config>
