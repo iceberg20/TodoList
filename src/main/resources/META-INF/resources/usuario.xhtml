@@ -7,7 +7,7 @@
                 xmlns:c="http://ifrn.edu.br/conta"
                 template="layout/template.xhtml">
     <ui:define name="content">
-        <c:crud title="Usuários" managedBean="#{usuarioCrudMBean}" showDeleteActionLink="true">
+        <c:crud title="Usuários" managedBean="#{usuarioCrudMBean}" showDeleteActionLink="false">
             <ui:define name="listColumns">
                 <p:column headerText="Nome" sortBy="#{bean.nome}" filterBy="#{bean.nome}" >
                     <h:outputText value="#{bean.nome}" />

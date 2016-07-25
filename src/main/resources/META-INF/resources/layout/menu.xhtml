@@ -2,11 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
       xmlns:p="http://primefaces.org/ui">
-    <p:menubar>
-        <p:menuitem value="Usuário" url="/usuario.jsf" />
-        <p:menuitem value="Projeto" url="/projeto.jsf" />
-        <p:menuitem value="Atividade" url="/atividade.jsf" />
-        <p:menuitem value="Intervalo" url="/intervalo.jsf" />
-    </p:menubar>
+    
+    <b:navBar brand="ToDo" brandHref="/usuario.jsf" inverse="true">
+    <b:navbarLinks>
+        <b:navLink value="Usuário" href="/usuario.jsf"></b:navLink>
+        <b:navLink value="Projeto" href="/projeto.jsf"></b:navLink>
+        <b:navLink value="Atividade" href="/atividade.jsf"></b:navLink>
+        <b:navLink value="Intervalo" href="/intervalo.jsf"></b:navLink>
+    </b:navbarLinks>
+    </b:navBar>
+    
 </ui:composition>

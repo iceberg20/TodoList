@@ -113,7 +113,7 @@ h4 {
 /* body > contentForm > page > layout > tituloAtividade > title */
 
 .title {
-    height: 30px;
+    height: 60px;
     margin-left: 0px;
     margin-bottom: 3px;
     padding: 8px 0 0 10px;
@@ -243,4 +243,8 @@ h4 {
 	font-size: 50px;
     text-align: center;
     width: 100%;
+}
+
+h1.title.ui-widget-header.ui-corner-all{
+    height: 60px !important;
 }

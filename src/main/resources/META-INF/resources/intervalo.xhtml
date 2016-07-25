@@ -7,7 +7,7 @@
                 xmlns:c="http://ifrn.edu.br/conta"
                 template="layout/template.xhtml">
     <ui:define name="content">
-        <c:crud title="Intervalos" managedBean="#{intervaloCrudMBean}" showDeleteActionLink="true">
+        <c:crud title="Intervalos" managedBean="#{intervaloCrudMBean}" showDeleteActionLink="false">
             <ui:define name="listColumns">
                 <p:column headerText="ID" sortBy="#{bean.id}" filterBy="#{bean.id}" >
                     <h:outputText value="#{bean.id}" />
