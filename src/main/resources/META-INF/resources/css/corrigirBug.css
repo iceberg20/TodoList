@@ -11,3 +11,7 @@ and open the template in the editor.
 .title {
     height: 60px !important;
 }
+
+div#menuForm:j_idt10.navbar.navbar-default{
+    margin-bottom: 0 !important;
+}
