@@ -12,20 +12,20 @@
                 <p:column headerText="Nome" sortBy="#{bean.nome}" filterBy="#{bean.nome}" >
                     <h:outputText value="#{bean.nome}" />
                 </p:column>
-                <p:column headerText="Prioridade" sortBy="#{bean.prioridade}" filterBy="#{bean.prioridade}" >
-                    <h:outputText value="#{bean.prioridade}" />
+                <p:column headerText="Prioridade" sortBy="#{bean.prioridade}" filterBy="#{bean.prioridade}"  priority="2">
+                    <h:outputText value="#{bean.prioridade}"/>
                 </p:column>
                 <p:column headerText="Projeto" sortBy="#{bean.projeto.nome}" filterBy="#{bean.projeto.nome}" >
                     <h:outputText value="#{bean.projeto.nome}" />
                 </p:column>
-                <p:column headerText="Prazo" sortBy="#{bean.prazo}" >
+                <p:column headerText="Prazo" sortBy="#{bean.prazo}" priority="2">
                     <c:date pattern="dd/MM/yyyy" readonly="true" value="#{bean.prazo}" />
                 </p:column>
-                <p:column headerText="Concluido" sortBy="#{bean.concluida}" >
-                     <h:outputText value="#{bean.concluida}" />
+                <p:column headerText="Concluido" sortBy="#{bean.concluida}" priority="3">
+                     <h:outputText value="#{bean.concluida}"/>
                 </p:column>
-                 <p:column headerText="Intervalo" sortBy="#{bean.intervalo}" >
-                     <h:outputText value="#{bean.intervalo.descricao()}" />
+                 <p:column headerText="Intervalo" sortBy="#{bean.intervalo}" priority="4">
+                     <h:outputText value="#{bean.intervalo.descricao()}"/>
                 </p:column>
                 
             </ui:define>
