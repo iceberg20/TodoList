@@ -15,10 +15,10 @@
                 <p:column headerText="Prioridade" sortBy="#{bean.prioridade}" filterBy="#{bean.prioridade}"  priority="2">
                     <h:outputText value="#{bean.prioridade}"/>
                 </p:column>
-                <p:column headerText="Projeto" sortBy="#{bean.projeto.nome}" filterBy="#{bean.projeto.nome}" >
+                <p:column headerText="Projeto" sortBy="#{bean.projeto.nome}" filterBy="#{bean.projeto.nome}" priority="2" >
                     <h:outputText value="#{bean.projeto.nome}" />
                 </p:column>
-                <p:column headerText="Prazo" sortBy="#{bean.prazo}" priority="2">
+                <p:column headerText="Prazo" sortBy="#{bean.prazo}">
                     <c:date pattern="dd/MM/yyyy" readonly="true" value="#{bean.prazo}" />
                 </p:column>
                 <p:column headerText="Concluido" sortBy="#{bean.concluida}" priority="3">
